@@ -93,7 +93,7 @@ This project is broken down into the following phases and micro-tasks.
 
 ---
 
-#### **Phase 1: Core Backend - Authentication & Users (Completed)**
+#### **Phase 1: Core Backend - Authentication, Users & RBAC (Completed) ✅**
 - **Objective:** Implement a secure way for users to register, log in, and access protected resources based on their roles.
 - **Tasks:**
     - [x] **Auth Module (`apps/api/src/auth`)**
@@ -104,17 +104,23 @@ This project is broken down into the following phases and micro-tasks.
         - [x] Implement `JwtStrategy` to validate tokens on incoming requests.
         - [x] Implement `JwtAuthGuard` to protect routes.
     - [x] **Users Module (`apps/api/src/users`)**
-        - [x] Implement `UsersController` with a protected endpoint:
+        - [x] Implement `UsersController` with protected endpoints:
             - [x] `GET /users/me`: Return the profile of the currently authenticated user.
-    - [ ] **RBAC (Role-Based Access Control)**
-        - [ ] Create a `Roles` decorator.
-        - [ ] Create a `RolesGuard` to authorize users based on the `Role` enum in `schema.prisma`.
-        - [ ] Apply `RolesGuard` to admin-only endpoints (e.g., list all users).
+            - [x] `GET /users`: Admin-only endpoint to list all users.
+    - [x] **RBAC (Role-Based Access Control)**
+        - [x] Create a `Roles` decorator in `apps/api/src/common/decorators`.
+        - [x] Create a `RolesGuard` to authorize users based on the `Role` enum.
+        - [x] Apply `RolesGuard` to admin-only and marketer endpoints.
+    - [x] **Security Features**
+        - [x] Add rate limiting with `@nestjs/throttler` (100 requests/min).
+        - [x] Enable global `ValidationPipe` with whitelist and transform.
+        - [x] Configure CORS for dashboard.
+        - [x] Update `.env.example` files.
 
 ---
 
-#### **Phase 2: Core Backend - Campaigns & Async Jobs (Completed)**
-- **Objective:** Build the functionality to create campaigns and process them asynchronously.
+#### **Phase 2: Core Backend - Campaigns, Flows, Segments, Events & Async Jobs (Completed) ✅**
+- **Objective:** Build the functionality to create campaigns, target audiences, track events, and process them asynchronously.
 - **Tasks:**
     - [x] **Flows Module (`apps/api/src/flows`)**
         - [x] Implement basic CRUD API for `Flow` entities.
@@ -127,6 +133,16 @@ This project is broken down into the following phases and micro-tasks.
         - [x] Modify `CampaignsService` so that `startCampaign` adds a job to the `campaign-jobs` queue for each user in the target audience.
         - [x] Create a `CampaignProcessor` (worker) to listen for and process jobs from the queue.
         - [x] The processor should simulate sending a message (e.g., `console.log`) and update the `CampaignJob` status in the database (`PROCESSING` -> `SENT` or `FAILED`).
+    - [x] **Segments Module (`apps/api/src/segments`)**
+        - [x] Add `Segment` model to Prisma schema with filters (JSON).
+        - [x] Implement full CRUD API with RBAC (ADMIN/MARKETER can create/update).
+        - [x] Link campaigns to segments via `segmentId` field.
+    - [x] **Events Module (`apps/api/src/events`)**
+        - [x] Add `Event` model to track user interactions (email_opened, link_clicked, etc.).
+        - [x] Public `POST /events` endpoint for tracking.
+        - [x] Protected `GET /events` and `GET /events/stats` endpoints for analytics.
+    - [x] **FailureLog Model**
+        - [x] Add `FailureLog` model to Prisma schema for job failure tracking.
 
 ---
 
@@ -159,22 +175,32 @@ This project is broken down into the following phases and micro-tasks.
 
 ---
 
-#### **Phase 5: n8n Integration for Advanced Workflows**
+#### **Phase 5: n8n Integration for Advanced Workflows (In Progress) 🚧**
 - **Objective:** Offload complex, multi-step processes to a dedicated workflow engine.
+- **Approach:**
+    - NestJS API calls n8n webhooks for async workflows (job failures, notifications)
+    - n8n schedules trigger NestJS API endpoints (daily campaign execution)
+    - n8n workflows interact with database via HTTP nodes calling the API
 - **Tasks:**
-    - [ ] Add n8n to the `docker-compose.yml` file.
+    - [x] Add n8n to the `docker-compose.yml` file (port 5678).
+    - [ ] **N8N Service Module (`apps/api/src/n8n`)**
+        - [ ] Create `N8nService` with methods to trigger webhooks.
+        - [ ] Add configuration for n8n webhook URLs in `.env`.
     - [ ] **Workflow 1: Job Failure Alert**
-        - [ ] Create a new n8n workflow with a webhook trigger.
-        - [ ] Modify the `CampaignProcessor` to call this webhook when a job fails.
-        - [ ] The n8n workflow will:
-            - [ ] Receive job failure data.
-            - [ ] Log the failure to a specific `FailureLogs` table in the database.
-            - [ ] Send a notification (e.g., to a mock webhook or console).
+        - [ ] Create n8n workflow with webhook trigger (`/webhook/job-failure`).
+        - [ ] Modify `CampaignProcessor` to call n8n webhook when job fails.
+        - [ ] n8n workflow: Log failure to `FailureLog` table via API POST.
+        - [ ] n8n workflow: Send mock notification (console log or webhook).
+        - [ ] Export workflow JSON to `n8n-workflows/job-failure-alert.json`.
     - [ ] **Workflow 2: Daily Scheduled Campaigns**
-        - [ ] Create an n8n workflow with a Cron trigger (e.g., runs every day at 8 AM).
-        - [ ] The workflow will:
-            - [ ] Call the NestJS API to fetch campaigns scheduled for that day.
-            - [ ] Loop through the campaigns and call the `/campaigns/:id/start` endpoint for each one.
+        - [ ] Create n8n workflow with Cron trigger (daily at 8 AM).
+        - [ ] Workflow calls `GET /campaigns?status=SCHEDULED` to fetch due campaigns.
+        - [ ] Loop through campaigns and call `POST /campaigns/:id/start` for each.
+        - [ ] Export workflow JSON to `n8n-workflows/scheduled-campaigns.json`.
+    - [ ] **Webhook Endpoints in API**
+        - [ ] Create webhook controller for n8n callbacks if needed.
+    - [ ] **Documentation**
+        - [ ] Add `n8n-workflows/README.md` with import/setup instructions.
 
 ---
 
