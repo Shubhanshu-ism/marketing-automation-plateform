@@ -17,4 +17,17 @@ export class UsersService {
       data,
     });
   }
+
+  async findAll(): Promise<Omit<User, 'password'>[]> {
+    const users = await this.prisma.user.findMany({
+      select: {
+        id: true,
+        email: true,
+        role: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+    });
+    return users;
+  }
 }
