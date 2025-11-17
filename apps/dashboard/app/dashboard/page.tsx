@@ -16,6 +16,9 @@ function DashboardPage() {
           <Link href="/dashboard/flows">
             <Button variant="link">Flows</Button>
           </Link>
+          <Link href="/dashboard/campaigns">
+            <Button variant="link">Campaigns</Button>
+          </Link>
           <Button variant="outline" onClick={logout}>
             Logout
           </Button>

@@ -65,5 +65,19 @@ export const api = (token: string) => ({
       body: JSON.stringify(flowData),
     }, token);
   },
-  // Add other authenticated methods here...
+  getCampaigns: async () => {
+    return privateRequest(`${API_BASE_URL}/campaigns`, { method: 'GET' }, token);
+  },
+  createCampaign: async (campaignData: { name: string; flowId: string }) => {
+    return privateRequest(`${API_BASE_URL}/campaigns`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(campaignData),
+    }, token);
+  },
+  startCampaign: async (campaignId: string) => {
+    return privateRequest(`${API_BASE_URL}/campaigns/${campaignId}/start`, {
+      method: 'POST',
+    }, token);
+  },
 });
