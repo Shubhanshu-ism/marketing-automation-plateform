@@ -33,6 +33,21 @@ export type Flow = $Result.DefaultSelection<Prisma.$FlowPayload>
  * 
  */
 export type CampaignJob = $Result.DefaultSelection<Prisma.$CampaignJobPayload>
+/**
+ * Model Segment
+ * 
+ */
+export type Segment = $Result.DefaultSelection<Prisma.$SegmentPayload>
+/**
+ * Model Event
+ * 
+ */
+export type Event = $Result.DefaultSelection<Prisma.$EventPayload>
+/**
+ * Model FailureLog
+ * 
+ */
+export type FailureLog = $Result.DefaultSelection<Prisma.$FailureLogPayload>
 
 /**
  * Enums
@@ -238,6 +253,36 @@ export class PrismaClient<
     * ```
     */
   get campaignJob(): Prisma.CampaignJobDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.segment`: Exposes CRUD operations for the **Segment** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Segments
+    * const segments = await prisma.segment.findMany()
+    * ```
+    */
+  get segment(): Prisma.SegmentDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.event`: Exposes CRUD operations for the **Event** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Events
+    * const events = await prisma.event.findMany()
+    * ```
+    */
+  get event(): Prisma.EventDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.failureLog`: Exposes CRUD operations for the **FailureLog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FailureLogs
+    * const failureLogs = await prisma.failureLog.findMany()
+    * ```
+    */
+  get failureLog(): Prisma.FailureLogDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -682,7 +727,10 @@ export namespace Prisma {
     User: 'User',
     Campaign: 'Campaign',
     Flow: 'Flow',
-    CampaignJob: 'CampaignJob'
+    CampaignJob: 'CampaignJob',
+    Segment: 'Segment',
+    Event: 'Event',
+    FailureLog: 'FailureLog'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -701,7 +749,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "campaign" | "flow" | "campaignJob"
+      modelProps: "user" | "campaign" | "flow" | "campaignJob" | "segment" | "event" | "failureLog"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1001,6 +1049,228 @@ export namespace Prisma {
           }
         }
       }
+      Segment: {
+        payload: Prisma.$SegmentPayload<ExtArgs>
+        fields: Prisma.SegmentFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SegmentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SegmentPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SegmentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SegmentPayload>
+          }
+          findFirst: {
+            args: Prisma.SegmentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SegmentPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SegmentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SegmentPayload>
+          }
+          findMany: {
+            args: Prisma.SegmentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SegmentPayload>[]
+          }
+          create: {
+            args: Prisma.SegmentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SegmentPayload>
+          }
+          createMany: {
+            args: Prisma.SegmentCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SegmentCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SegmentPayload>[]
+          }
+          delete: {
+            args: Prisma.SegmentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SegmentPayload>
+          }
+          update: {
+            args: Prisma.SegmentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SegmentPayload>
+          }
+          deleteMany: {
+            args: Prisma.SegmentDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SegmentUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SegmentUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SegmentPayload>[]
+          }
+          upsert: {
+            args: Prisma.SegmentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SegmentPayload>
+          }
+          aggregate: {
+            args: Prisma.SegmentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSegment>
+          }
+          groupBy: {
+            args: Prisma.SegmentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SegmentGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SegmentCountArgs<ExtArgs>
+            result: $Utils.Optional<SegmentCountAggregateOutputType> | number
+          }
+        }
+      }
+      Event: {
+        payload: Prisma.$EventPayload<ExtArgs>
+        fields: Prisma.EventFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EventFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EventFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventPayload>
+          }
+          findFirst: {
+            args: Prisma.EventFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EventFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventPayload>
+          }
+          findMany: {
+            args: Prisma.EventFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventPayload>[]
+          }
+          create: {
+            args: Prisma.EventCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventPayload>
+          }
+          createMany: {
+            args: Prisma.EventCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EventCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventPayload>[]
+          }
+          delete: {
+            args: Prisma.EventDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventPayload>
+          }
+          update: {
+            args: Prisma.EventUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventPayload>
+          }
+          deleteMany: {
+            args: Prisma.EventDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EventUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EventUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventPayload>[]
+          }
+          upsert: {
+            args: Prisma.EventUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventPayload>
+          }
+          aggregate: {
+            args: Prisma.EventAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEvent>
+          }
+          groupBy: {
+            args: Prisma.EventGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EventGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EventCountArgs<ExtArgs>
+            result: $Utils.Optional<EventCountAggregateOutputType> | number
+          }
+        }
+      }
+      FailureLog: {
+        payload: Prisma.$FailureLogPayload<ExtArgs>
+        fields: Prisma.FailureLogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FailureLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FailureLogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FailureLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FailureLogPayload>
+          }
+          findFirst: {
+            args: Prisma.FailureLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FailureLogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FailureLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FailureLogPayload>
+          }
+          findMany: {
+            args: Prisma.FailureLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FailureLogPayload>[]
+          }
+          create: {
+            args: Prisma.FailureLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FailureLogPayload>
+          }
+          createMany: {
+            args: Prisma.FailureLogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FailureLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FailureLogPayload>[]
+          }
+          delete: {
+            args: Prisma.FailureLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FailureLogPayload>
+          }
+          update: {
+            args: Prisma.FailureLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FailureLogPayload>
+          }
+          deleteMany: {
+            args: Prisma.FailureLogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FailureLogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FailureLogUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FailureLogPayload>[]
+          }
+          upsert: {
+            args: Prisma.FailureLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FailureLogPayload>
+          }
+          aggregate: {
+            args: Prisma.FailureLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFailureLog>
+          }
+          groupBy: {
+            args: Prisma.FailureLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FailureLogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FailureLogCountArgs<ExtArgs>
+            result: $Utils.Optional<FailureLogCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1101,6 +1371,9 @@ export namespace Prisma {
     campaign?: CampaignOmit
     flow?: FlowOmit
     campaignJob?: CampaignJobOmit
+    segment?: SegmentOmit
+    event?: EventOmit
+    failureLog?: FailureLogOmit
   }
 
   /* Types for Logging */
@@ -1234,6 +1507,68 @@ export namespace Prisma {
    * FlowCountOutputType without action
    */
   export type FlowCountOutputTypeCountCampaignsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CampaignWhereInput
+  }
+
+
+  /**
+   * Count Type CampaignJobCountOutputType
+   */
+
+  export type CampaignJobCountOutputType = {
+    failureLogs: number
+  }
+
+  export type CampaignJobCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    failureLogs?: boolean | CampaignJobCountOutputTypeCountFailureLogsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CampaignJobCountOutputType without action
+   */
+  export type CampaignJobCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampaignJobCountOutputType
+     */
+    select?: CampaignJobCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CampaignJobCountOutputType without action
+   */
+  export type CampaignJobCountOutputTypeCountFailureLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FailureLogWhereInput
+  }
+
+
+  /**
+   * Count Type SegmentCountOutputType
+   */
+
+  export type SegmentCountOutputType = {
+    campaigns: number
+  }
+
+  export type SegmentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    campaigns?: boolean | SegmentCountOutputTypeCountCampaignsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * SegmentCountOutputType without action
+   */
+  export type SegmentCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SegmentCountOutputType
+     */
+    select?: SegmentCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * SegmentCountOutputType without action
+   */
+  export type SegmentCountOutputTypeCountCampaignsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CampaignWhereInput
   }
 
@@ -2266,6 +2601,7 @@ export namespace Prisma {
     status: $Enums.CampaignStatus | null
     scheduledAt: Date | null
     flowId: string | null
+    segmentId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2276,6 +2612,7 @@ export namespace Prisma {
     status: $Enums.CampaignStatus | null
     scheduledAt: Date | null
     flowId: string | null
+    segmentId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2286,6 +2623,7 @@ export namespace Prisma {
     status: number
     scheduledAt: number
     flowId: number
+    segmentId: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -2298,6 +2636,7 @@ export namespace Prisma {
     status?: true
     scheduledAt?: true
     flowId?: true
+    segmentId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2308,6 +2647,7 @@ export namespace Prisma {
     status?: true
     scheduledAt?: true
     flowId?: true
+    segmentId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2318,6 +2658,7 @@ export namespace Prisma {
     status?: true
     scheduledAt?: true
     flowId?: true
+    segmentId?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -2401,6 +2742,7 @@ export namespace Prisma {
     status: $Enums.CampaignStatus
     scheduledAt: Date | null
     flowId: string
+    segmentId: string | null
     createdAt: Date
     updatedAt: Date
     _count: CampaignCountAggregateOutputType | null
@@ -2428,9 +2770,11 @@ export namespace Prisma {
     status?: boolean
     scheduledAt?: boolean
     flowId?: boolean
+    segmentId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     flow?: boolean | FlowDefaultArgs<ExtArgs>
+    segment?: boolean | Campaign$segmentArgs<ExtArgs>
     jobs?: boolean | Campaign$jobsArgs<ExtArgs>
     _count?: boolean | CampaignCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["campaign"]>
@@ -2441,9 +2785,11 @@ export namespace Prisma {
     status?: boolean
     scheduledAt?: boolean
     flowId?: boolean
+    segmentId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     flow?: boolean | FlowDefaultArgs<ExtArgs>
+    segment?: boolean | Campaign$segmentArgs<ExtArgs>
   }, ExtArgs["result"]["campaign"]>
 
   export type CampaignSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2452,9 +2798,11 @@ export namespace Prisma {
     status?: boolean
     scheduledAt?: boolean
     flowId?: boolean
+    segmentId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     flow?: boolean | FlowDefaultArgs<ExtArgs>
+    segment?: boolean | Campaign$segmentArgs<ExtArgs>
   }, ExtArgs["result"]["campaign"]>
 
   export type CampaignSelectScalar = {
@@ -2463,27 +2811,32 @@ export namespace Prisma {
     status?: boolean
     scheduledAt?: boolean
     flowId?: boolean
+    segmentId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type CampaignOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "status" | "scheduledAt" | "flowId" | "createdAt" | "updatedAt", ExtArgs["result"]["campaign"]>
+  export type CampaignOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "status" | "scheduledAt" | "flowId" | "segmentId" | "createdAt" | "updatedAt", ExtArgs["result"]["campaign"]>
   export type CampaignInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     flow?: boolean | FlowDefaultArgs<ExtArgs>
+    segment?: boolean | Campaign$segmentArgs<ExtArgs>
     jobs?: boolean | Campaign$jobsArgs<ExtArgs>
     _count?: boolean | CampaignCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type CampaignIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     flow?: boolean | FlowDefaultArgs<ExtArgs>
+    segment?: boolean | Campaign$segmentArgs<ExtArgs>
   }
   export type CampaignIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     flow?: boolean | FlowDefaultArgs<ExtArgs>
+    segment?: boolean | Campaign$segmentArgs<ExtArgs>
   }
 
   export type $CampaignPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Campaign"
     objects: {
       flow: Prisma.$FlowPayload<ExtArgs>
+      segment: Prisma.$SegmentPayload<ExtArgs> | null
       jobs: Prisma.$CampaignJobPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -2492,6 +2845,7 @@ export namespace Prisma {
       status: $Enums.CampaignStatus
       scheduledAt: Date | null
       flowId: string
+      segmentId: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["campaign"]>
@@ -2889,6 +3243,7 @@ export namespace Prisma {
   export interface Prisma__CampaignClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     flow<T extends FlowDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FlowDefaultArgs<ExtArgs>>): Prisma__FlowClient<$Result.GetResult<Prisma.$FlowPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    segment<T extends Campaign$segmentArgs<ExtArgs> = {}>(args?: Subset<T, Campaign$segmentArgs<ExtArgs>>): Prisma__SegmentClient<$Result.GetResult<Prisma.$SegmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     jobs<T extends Campaign$jobsArgs<ExtArgs> = {}>(args?: Subset<T, Campaign$jobsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CampaignJobPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2924,6 +3279,7 @@ export namespace Prisma {
     readonly status: FieldRef<"Campaign", 'CampaignStatus'>
     readonly scheduledAt: FieldRef<"Campaign", 'DateTime'>
     readonly flowId: FieldRef<"Campaign", 'String'>
+    readonly segmentId: FieldRef<"Campaign", 'String'>
     readonly createdAt: FieldRef<"Campaign", 'DateTime'>
     readonly updatedAt: FieldRef<"Campaign", 'DateTime'>
   }
@@ -3319,6 +3675,25 @@ export namespace Prisma {
      * Limit how many Campaigns to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Campaign.segment
+   */
+  export type Campaign$segmentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Segment
+     */
+    select?: SegmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Segment
+     */
+    omit?: SegmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SegmentInclude<ExtArgs> | null
+    where?: SegmentWhereInput
   }
 
   /**
@@ -4654,6 +5029,8 @@ export namespace Prisma {
     processedAt?: boolean
     createdAt?: boolean
     campaign?: boolean | CampaignDefaultArgs<ExtArgs>
+    failureLogs?: boolean | CampaignJob$failureLogsArgs<ExtArgs>
+    _count?: boolean | CampaignJobCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["campaignJob"]>
 
   export type CampaignJobSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4691,6 +5068,8 @@ export namespace Prisma {
   export type CampaignJobOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "campaignId" | "userId" | "status" | "result" | "processedAt" | "createdAt", ExtArgs["result"]["campaignJob"]>
   export type CampaignJobInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     campaign?: boolean | CampaignDefaultArgs<ExtArgs>
+    failureLogs?: boolean | CampaignJob$failureLogsArgs<ExtArgs>
+    _count?: boolean | CampaignJobCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type CampaignJobIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     campaign?: boolean | CampaignDefaultArgs<ExtArgs>
@@ -4703,6 +5082,7 @@ export namespace Prisma {
     name: "CampaignJob"
     objects: {
       campaign: Prisma.$CampaignPayload<ExtArgs>
+      failureLogs: Prisma.$FailureLogPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5107,6 +5487,7 @@ export namespace Prisma {
   export interface Prisma__CampaignJobClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     campaign<T extends CampaignDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CampaignDefaultArgs<ExtArgs>>): Prisma__CampaignClient<$Result.GetResult<Prisma.$CampaignPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    failureLogs<T extends CampaignJob$failureLogsArgs<ExtArgs> = {}>(args?: Subset<T, CampaignJob$failureLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FailureLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5539,6 +5920,30 @@ export namespace Prisma {
   }
 
   /**
+   * CampaignJob.failureLogs
+   */
+  export type CampaignJob$failureLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FailureLog
+     */
+    select?: FailureLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FailureLog
+     */
+    omit?: FailureLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FailureLogInclude<ExtArgs> | null
+    where?: FailureLogWhereInput
+    orderBy?: FailureLogOrderByWithRelationInput | FailureLogOrderByWithRelationInput[]
+    cursor?: FailureLogWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FailureLogScalarFieldEnum | FailureLogScalarFieldEnum[]
+  }
+
+  /**
    * CampaignJob without action
    */
   export type CampaignJobDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5554,6 +5959,3143 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: CampaignJobInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Segment
+   */
+
+  export type AggregateSegment = {
+    _count: SegmentCountAggregateOutputType | null
+    _min: SegmentMinAggregateOutputType | null
+    _max: SegmentMaxAggregateOutputType | null
+  }
+
+  export type SegmentMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SegmentMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SegmentCountAggregateOutputType = {
+    id: number
+    name: number
+    filters: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type SegmentMinAggregateInputType = {
+    id?: true
+    name?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SegmentMaxAggregateInputType = {
+    id?: true
+    name?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SegmentCountAggregateInputType = {
+    id?: true
+    name?: true
+    filters?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type SegmentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Segment to aggregate.
+     */
+    where?: SegmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Segments to fetch.
+     */
+    orderBy?: SegmentOrderByWithRelationInput | SegmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SegmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Segments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Segments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Segments
+    **/
+    _count?: true | SegmentCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SegmentMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SegmentMaxAggregateInputType
+  }
+
+  export type GetSegmentAggregateType<T extends SegmentAggregateArgs> = {
+        [P in keyof T & keyof AggregateSegment]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSegment[P]>
+      : GetScalarType<T[P], AggregateSegment[P]>
+  }
+
+
+
+
+  export type SegmentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SegmentWhereInput
+    orderBy?: SegmentOrderByWithAggregationInput | SegmentOrderByWithAggregationInput[]
+    by: SegmentScalarFieldEnum[] | SegmentScalarFieldEnum
+    having?: SegmentScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SegmentCountAggregateInputType | true
+    _min?: SegmentMinAggregateInputType
+    _max?: SegmentMaxAggregateInputType
+  }
+
+  export type SegmentGroupByOutputType = {
+    id: string
+    name: string
+    filters: JsonValue
+    createdAt: Date
+    updatedAt: Date
+    _count: SegmentCountAggregateOutputType | null
+    _min: SegmentMinAggregateOutputType | null
+    _max: SegmentMaxAggregateOutputType | null
+  }
+
+  type GetSegmentGroupByPayload<T extends SegmentGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SegmentGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SegmentGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SegmentGroupByOutputType[P]>
+            : GetScalarType<T[P], SegmentGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SegmentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    filters?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    campaigns?: boolean | Segment$campaignsArgs<ExtArgs>
+    _count?: boolean | SegmentCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["segment"]>
+
+  export type SegmentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    filters?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["segment"]>
+
+  export type SegmentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    filters?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["segment"]>
+
+  export type SegmentSelectScalar = {
+    id?: boolean
+    name?: boolean
+    filters?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type SegmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "filters" | "createdAt" | "updatedAt", ExtArgs["result"]["segment"]>
+  export type SegmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    campaigns?: boolean | Segment$campaignsArgs<ExtArgs>
+    _count?: boolean | SegmentCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type SegmentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type SegmentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $SegmentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Segment"
+    objects: {
+      campaigns: Prisma.$CampaignPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      filters: Prisma.JsonValue
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["segment"]>
+    composites: {}
+  }
+
+  type SegmentGetPayload<S extends boolean | null | undefined | SegmentDefaultArgs> = $Result.GetResult<Prisma.$SegmentPayload, S>
+
+  type SegmentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SegmentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SegmentCountAggregateInputType | true
+    }
+
+  export interface SegmentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Segment'], meta: { name: 'Segment' } }
+    /**
+     * Find zero or one Segment that matches the filter.
+     * @param {SegmentFindUniqueArgs} args - Arguments to find a Segment
+     * @example
+     * // Get one Segment
+     * const segment = await prisma.segment.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SegmentFindUniqueArgs>(args: SelectSubset<T, SegmentFindUniqueArgs<ExtArgs>>): Prisma__SegmentClient<$Result.GetResult<Prisma.$SegmentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Segment that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SegmentFindUniqueOrThrowArgs} args - Arguments to find a Segment
+     * @example
+     * // Get one Segment
+     * const segment = await prisma.segment.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SegmentFindUniqueOrThrowArgs>(args: SelectSubset<T, SegmentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SegmentClient<$Result.GetResult<Prisma.$SegmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Segment that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SegmentFindFirstArgs} args - Arguments to find a Segment
+     * @example
+     * // Get one Segment
+     * const segment = await prisma.segment.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SegmentFindFirstArgs>(args?: SelectSubset<T, SegmentFindFirstArgs<ExtArgs>>): Prisma__SegmentClient<$Result.GetResult<Prisma.$SegmentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Segment that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SegmentFindFirstOrThrowArgs} args - Arguments to find a Segment
+     * @example
+     * // Get one Segment
+     * const segment = await prisma.segment.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SegmentFindFirstOrThrowArgs>(args?: SelectSubset<T, SegmentFindFirstOrThrowArgs<ExtArgs>>): Prisma__SegmentClient<$Result.GetResult<Prisma.$SegmentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Segments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SegmentFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Segments
+     * const segments = await prisma.segment.findMany()
+     * 
+     * // Get first 10 Segments
+     * const segments = await prisma.segment.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const segmentWithIdOnly = await prisma.segment.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SegmentFindManyArgs>(args?: SelectSubset<T, SegmentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SegmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Segment.
+     * @param {SegmentCreateArgs} args - Arguments to create a Segment.
+     * @example
+     * // Create one Segment
+     * const Segment = await prisma.segment.create({
+     *   data: {
+     *     // ... data to create a Segment
+     *   }
+     * })
+     * 
+     */
+    create<T extends SegmentCreateArgs>(args: SelectSubset<T, SegmentCreateArgs<ExtArgs>>): Prisma__SegmentClient<$Result.GetResult<Prisma.$SegmentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Segments.
+     * @param {SegmentCreateManyArgs} args - Arguments to create many Segments.
+     * @example
+     * // Create many Segments
+     * const segment = await prisma.segment.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SegmentCreateManyArgs>(args?: SelectSubset<T, SegmentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Segments and returns the data saved in the database.
+     * @param {SegmentCreateManyAndReturnArgs} args - Arguments to create many Segments.
+     * @example
+     * // Create many Segments
+     * const segment = await prisma.segment.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Segments and only return the `id`
+     * const segmentWithIdOnly = await prisma.segment.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SegmentCreateManyAndReturnArgs>(args?: SelectSubset<T, SegmentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SegmentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Segment.
+     * @param {SegmentDeleteArgs} args - Arguments to delete one Segment.
+     * @example
+     * // Delete one Segment
+     * const Segment = await prisma.segment.delete({
+     *   where: {
+     *     // ... filter to delete one Segment
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SegmentDeleteArgs>(args: SelectSubset<T, SegmentDeleteArgs<ExtArgs>>): Prisma__SegmentClient<$Result.GetResult<Prisma.$SegmentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Segment.
+     * @param {SegmentUpdateArgs} args - Arguments to update one Segment.
+     * @example
+     * // Update one Segment
+     * const segment = await prisma.segment.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SegmentUpdateArgs>(args: SelectSubset<T, SegmentUpdateArgs<ExtArgs>>): Prisma__SegmentClient<$Result.GetResult<Prisma.$SegmentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Segments.
+     * @param {SegmentDeleteManyArgs} args - Arguments to filter Segments to delete.
+     * @example
+     * // Delete a few Segments
+     * const { count } = await prisma.segment.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SegmentDeleteManyArgs>(args?: SelectSubset<T, SegmentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Segments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SegmentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Segments
+     * const segment = await prisma.segment.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SegmentUpdateManyArgs>(args: SelectSubset<T, SegmentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Segments and returns the data updated in the database.
+     * @param {SegmentUpdateManyAndReturnArgs} args - Arguments to update many Segments.
+     * @example
+     * // Update many Segments
+     * const segment = await prisma.segment.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Segments and only return the `id`
+     * const segmentWithIdOnly = await prisma.segment.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SegmentUpdateManyAndReturnArgs>(args: SelectSubset<T, SegmentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SegmentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Segment.
+     * @param {SegmentUpsertArgs} args - Arguments to update or create a Segment.
+     * @example
+     * // Update or create a Segment
+     * const segment = await prisma.segment.upsert({
+     *   create: {
+     *     // ... data to create a Segment
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Segment we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SegmentUpsertArgs>(args: SelectSubset<T, SegmentUpsertArgs<ExtArgs>>): Prisma__SegmentClient<$Result.GetResult<Prisma.$SegmentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Segments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SegmentCountArgs} args - Arguments to filter Segments to count.
+     * @example
+     * // Count the number of Segments
+     * const count = await prisma.segment.count({
+     *   where: {
+     *     // ... the filter for the Segments we want to count
+     *   }
+     * })
+    **/
+    count<T extends SegmentCountArgs>(
+      args?: Subset<T, SegmentCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SegmentCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Segment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SegmentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SegmentAggregateArgs>(args: Subset<T, SegmentAggregateArgs>): Prisma.PrismaPromise<GetSegmentAggregateType<T>>
+
+    /**
+     * Group by Segment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SegmentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SegmentGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SegmentGroupByArgs['orderBy'] }
+        : { orderBy?: SegmentGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SegmentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSegmentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Segment model
+   */
+  readonly fields: SegmentFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Segment.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SegmentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    campaigns<T extends Segment$campaignsArgs<ExtArgs> = {}>(args?: Subset<T, Segment$campaignsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CampaignPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Segment model
+   */
+  interface SegmentFieldRefs {
+    readonly id: FieldRef<"Segment", 'String'>
+    readonly name: FieldRef<"Segment", 'String'>
+    readonly filters: FieldRef<"Segment", 'Json'>
+    readonly createdAt: FieldRef<"Segment", 'DateTime'>
+    readonly updatedAt: FieldRef<"Segment", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Segment findUnique
+   */
+  export type SegmentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Segment
+     */
+    select?: SegmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Segment
+     */
+    omit?: SegmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SegmentInclude<ExtArgs> | null
+    /**
+     * Filter, which Segment to fetch.
+     */
+    where: SegmentWhereUniqueInput
+  }
+
+  /**
+   * Segment findUniqueOrThrow
+   */
+  export type SegmentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Segment
+     */
+    select?: SegmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Segment
+     */
+    omit?: SegmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SegmentInclude<ExtArgs> | null
+    /**
+     * Filter, which Segment to fetch.
+     */
+    where: SegmentWhereUniqueInput
+  }
+
+  /**
+   * Segment findFirst
+   */
+  export type SegmentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Segment
+     */
+    select?: SegmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Segment
+     */
+    omit?: SegmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SegmentInclude<ExtArgs> | null
+    /**
+     * Filter, which Segment to fetch.
+     */
+    where?: SegmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Segments to fetch.
+     */
+    orderBy?: SegmentOrderByWithRelationInput | SegmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Segments.
+     */
+    cursor?: SegmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Segments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Segments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Segments.
+     */
+    distinct?: SegmentScalarFieldEnum | SegmentScalarFieldEnum[]
+  }
+
+  /**
+   * Segment findFirstOrThrow
+   */
+  export type SegmentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Segment
+     */
+    select?: SegmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Segment
+     */
+    omit?: SegmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SegmentInclude<ExtArgs> | null
+    /**
+     * Filter, which Segment to fetch.
+     */
+    where?: SegmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Segments to fetch.
+     */
+    orderBy?: SegmentOrderByWithRelationInput | SegmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Segments.
+     */
+    cursor?: SegmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Segments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Segments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Segments.
+     */
+    distinct?: SegmentScalarFieldEnum | SegmentScalarFieldEnum[]
+  }
+
+  /**
+   * Segment findMany
+   */
+  export type SegmentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Segment
+     */
+    select?: SegmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Segment
+     */
+    omit?: SegmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SegmentInclude<ExtArgs> | null
+    /**
+     * Filter, which Segments to fetch.
+     */
+    where?: SegmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Segments to fetch.
+     */
+    orderBy?: SegmentOrderByWithRelationInput | SegmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Segments.
+     */
+    cursor?: SegmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Segments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Segments.
+     */
+    skip?: number
+    distinct?: SegmentScalarFieldEnum | SegmentScalarFieldEnum[]
+  }
+
+  /**
+   * Segment create
+   */
+  export type SegmentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Segment
+     */
+    select?: SegmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Segment
+     */
+    omit?: SegmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SegmentInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Segment.
+     */
+    data: XOR<SegmentCreateInput, SegmentUncheckedCreateInput>
+  }
+
+  /**
+   * Segment createMany
+   */
+  export type SegmentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Segments.
+     */
+    data: SegmentCreateManyInput | SegmentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Segment createManyAndReturn
+   */
+  export type SegmentCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Segment
+     */
+    select?: SegmentSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Segment
+     */
+    omit?: SegmentOmit<ExtArgs> | null
+    /**
+     * The data used to create many Segments.
+     */
+    data: SegmentCreateManyInput | SegmentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Segment update
+   */
+  export type SegmentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Segment
+     */
+    select?: SegmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Segment
+     */
+    omit?: SegmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SegmentInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Segment.
+     */
+    data: XOR<SegmentUpdateInput, SegmentUncheckedUpdateInput>
+    /**
+     * Choose, which Segment to update.
+     */
+    where: SegmentWhereUniqueInput
+  }
+
+  /**
+   * Segment updateMany
+   */
+  export type SegmentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Segments.
+     */
+    data: XOR<SegmentUpdateManyMutationInput, SegmentUncheckedUpdateManyInput>
+    /**
+     * Filter which Segments to update
+     */
+    where?: SegmentWhereInput
+    /**
+     * Limit how many Segments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Segment updateManyAndReturn
+   */
+  export type SegmentUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Segment
+     */
+    select?: SegmentSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Segment
+     */
+    omit?: SegmentOmit<ExtArgs> | null
+    /**
+     * The data used to update Segments.
+     */
+    data: XOR<SegmentUpdateManyMutationInput, SegmentUncheckedUpdateManyInput>
+    /**
+     * Filter which Segments to update
+     */
+    where?: SegmentWhereInput
+    /**
+     * Limit how many Segments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Segment upsert
+   */
+  export type SegmentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Segment
+     */
+    select?: SegmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Segment
+     */
+    omit?: SegmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SegmentInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Segment to update in case it exists.
+     */
+    where: SegmentWhereUniqueInput
+    /**
+     * In case the Segment found by the `where` argument doesn't exist, create a new Segment with this data.
+     */
+    create: XOR<SegmentCreateInput, SegmentUncheckedCreateInput>
+    /**
+     * In case the Segment was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SegmentUpdateInput, SegmentUncheckedUpdateInput>
+  }
+
+  /**
+   * Segment delete
+   */
+  export type SegmentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Segment
+     */
+    select?: SegmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Segment
+     */
+    omit?: SegmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SegmentInclude<ExtArgs> | null
+    /**
+     * Filter which Segment to delete.
+     */
+    where: SegmentWhereUniqueInput
+  }
+
+  /**
+   * Segment deleteMany
+   */
+  export type SegmentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Segments to delete
+     */
+    where?: SegmentWhereInput
+    /**
+     * Limit how many Segments to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Segment.campaigns
+   */
+  export type Segment$campaignsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Campaign
+     */
+    select?: CampaignSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Campaign
+     */
+    omit?: CampaignOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampaignInclude<ExtArgs> | null
+    where?: CampaignWhereInput
+    orderBy?: CampaignOrderByWithRelationInput | CampaignOrderByWithRelationInput[]
+    cursor?: CampaignWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CampaignScalarFieldEnum | CampaignScalarFieldEnum[]
+  }
+
+  /**
+   * Segment without action
+   */
+  export type SegmentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Segment
+     */
+    select?: SegmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Segment
+     */
+    omit?: SegmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SegmentInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Event
+   */
+
+  export type AggregateEvent = {
+    _count: EventCountAggregateOutputType | null
+    _min: EventMinAggregateOutputType | null
+    _max: EventMaxAggregateOutputType | null
+  }
+
+  export type EventMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    type: string | null
+    campaignId: string | null
+    createdAt: Date | null
+  }
+
+  export type EventMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    type: string | null
+    campaignId: string | null
+    createdAt: Date | null
+  }
+
+  export type EventCountAggregateOutputType = {
+    id: number
+    userId: number
+    type: number
+    metadata: number
+    campaignId: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type EventMinAggregateInputType = {
+    id?: true
+    userId?: true
+    type?: true
+    campaignId?: true
+    createdAt?: true
+  }
+
+  export type EventMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    type?: true
+    campaignId?: true
+    createdAt?: true
+  }
+
+  export type EventCountAggregateInputType = {
+    id?: true
+    userId?: true
+    type?: true
+    metadata?: true
+    campaignId?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type EventAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Event to aggregate.
+     */
+    where?: EventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Events to fetch.
+     */
+    orderBy?: EventOrderByWithRelationInput | EventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Events from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Events.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Events
+    **/
+    _count?: true | EventCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EventMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EventMaxAggregateInputType
+  }
+
+  export type GetEventAggregateType<T extends EventAggregateArgs> = {
+        [P in keyof T & keyof AggregateEvent]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEvent[P]>
+      : GetScalarType<T[P], AggregateEvent[P]>
+  }
+
+
+
+
+  export type EventGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EventWhereInput
+    orderBy?: EventOrderByWithAggregationInput | EventOrderByWithAggregationInput[]
+    by: EventScalarFieldEnum[] | EventScalarFieldEnum
+    having?: EventScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EventCountAggregateInputType | true
+    _min?: EventMinAggregateInputType
+    _max?: EventMaxAggregateInputType
+  }
+
+  export type EventGroupByOutputType = {
+    id: string
+    userId: string
+    type: string
+    metadata: JsonValue
+    campaignId: string | null
+    createdAt: Date
+    _count: EventCountAggregateOutputType | null
+    _min: EventMinAggregateOutputType | null
+    _max: EventMaxAggregateOutputType | null
+  }
+
+  type GetEventGroupByPayload<T extends EventGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EventGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EventGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EventGroupByOutputType[P]>
+            : GetScalarType<T[P], EventGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EventSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    type?: boolean
+    metadata?: boolean
+    campaignId?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["event"]>
+
+  export type EventSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    type?: boolean
+    metadata?: boolean
+    campaignId?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["event"]>
+
+  export type EventSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    type?: boolean
+    metadata?: boolean
+    campaignId?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["event"]>
+
+  export type EventSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    type?: boolean
+    metadata?: boolean
+    campaignId?: boolean
+    createdAt?: boolean
+  }
+
+  export type EventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "type" | "metadata" | "campaignId" | "createdAt", ExtArgs["result"]["event"]>
+
+  export type $EventPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Event"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      type: string
+      metadata: Prisma.JsonValue
+      campaignId: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["event"]>
+    composites: {}
+  }
+
+  type EventGetPayload<S extends boolean | null | undefined | EventDefaultArgs> = $Result.GetResult<Prisma.$EventPayload, S>
+
+  type EventCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EventFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EventCountAggregateInputType | true
+    }
+
+  export interface EventDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Event'], meta: { name: 'Event' } }
+    /**
+     * Find zero or one Event that matches the filter.
+     * @param {EventFindUniqueArgs} args - Arguments to find a Event
+     * @example
+     * // Get one Event
+     * const event = await prisma.event.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EventFindUniqueArgs>(args: SelectSubset<T, EventFindUniqueArgs<ExtArgs>>): Prisma__EventClient<$Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Event that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EventFindUniqueOrThrowArgs} args - Arguments to find a Event
+     * @example
+     * // Get one Event
+     * const event = await prisma.event.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EventFindUniqueOrThrowArgs>(args: SelectSubset<T, EventFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EventClient<$Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Event that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventFindFirstArgs} args - Arguments to find a Event
+     * @example
+     * // Get one Event
+     * const event = await prisma.event.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EventFindFirstArgs>(args?: SelectSubset<T, EventFindFirstArgs<ExtArgs>>): Prisma__EventClient<$Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Event that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventFindFirstOrThrowArgs} args - Arguments to find a Event
+     * @example
+     * // Get one Event
+     * const event = await prisma.event.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EventFindFirstOrThrowArgs>(args?: SelectSubset<T, EventFindFirstOrThrowArgs<ExtArgs>>): Prisma__EventClient<$Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Events that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Events
+     * const events = await prisma.event.findMany()
+     * 
+     * // Get first 10 Events
+     * const events = await prisma.event.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const eventWithIdOnly = await prisma.event.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EventFindManyArgs>(args?: SelectSubset<T, EventFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Event.
+     * @param {EventCreateArgs} args - Arguments to create a Event.
+     * @example
+     * // Create one Event
+     * const Event = await prisma.event.create({
+     *   data: {
+     *     // ... data to create a Event
+     *   }
+     * })
+     * 
+     */
+    create<T extends EventCreateArgs>(args: SelectSubset<T, EventCreateArgs<ExtArgs>>): Prisma__EventClient<$Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Events.
+     * @param {EventCreateManyArgs} args - Arguments to create many Events.
+     * @example
+     * // Create many Events
+     * const event = await prisma.event.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EventCreateManyArgs>(args?: SelectSubset<T, EventCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Events and returns the data saved in the database.
+     * @param {EventCreateManyAndReturnArgs} args - Arguments to create many Events.
+     * @example
+     * // Create many Events
+     * const event = await prisma.event.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Events and only return the `id`
+     * const eventWithIdOnly = await prisma.event.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EventCreateManyAndReturnArgs>(args?: SelectSubset<T, EventCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Event.
+     * @param {EventDeleteArgs} args - Arguments to delete one Event.
+     * @example
+     * // Delete one Event
+     * const Event = await prisma.event.delete({
+     *   where: {
+     *     // ... filter to delete one Event
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EventDeleteArgs>(args: SelectSubset<T, EventDeleteArgs<ExtArgs>>): Prisma__EventClient<$Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Event.
+     * @param {EventUpdateArgs} args - Arguments to update one Event.
+     * @example
+     * // Update one Event
+     * const event = await prisma.event.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EventUpdateArgs>(args: SelectSubset<T, EventUpdateArgs<ExtArgs>>): Prisma__EventClient<$Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Events.
+     * @param {EventDeleteManyArgs} args - Arguments to filter Events to delete.
+     * @example
+     * // Delete a few Events
+     * const { count } = await prisma.event.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EventDeleteManyArgs>(args?: SelectSubset<T, EventDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Events.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Events
+     * const event = await prisma.event.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EventUpdateManyArgs>(args: SelectSubset<T, EventUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Events and returns the data updated in the database.
+     * @param {EventUpdateManyAndReturnArgs} args - Arguments to update many Events.
+     * @example
+     * // Update many Events
+     * const event = await prisma.event.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Events and only return the `id`
+     * const eventWithIdOnly = await prisma.event.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EventUpdateManyAndReturnArgs>(args: SelectSubset<T, EventUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Event.
+     * @param {EventUpsertArgs} args - Arguments to update or create a Event.
+     * @example
+     * // Update or create a Event
+     * const event = await prisma.event.upsert({
+     *   create: {
+     *     // ... data to create a Event
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Event we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EventUpsertArgs>(args: SelectSubset<T, EventUpsertArgs<ExtArgs>>): Prisma__EventClient<$Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Events.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventCountArgs} args - Arguments to filter Events to count.
+     * @example
+     * // Count the number of Events
+     * const count = await prisma.event.count({
+     *   where: {
+     *     // ... the filter for the Events we want to count
+     *   }
+     * })
+    **/
+    count<T extends EventCountArgs>(
+      args?: Subset<T, EventCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EventCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Event.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EventAggregateArgs>(args: Subset<T, EventAggregateArgs>): Prisma.PrismaPromise<GetEventAggregateType<T>>
+
+    /**
+     * Group by Event.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EventGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EventGroupByArgs['orderBy'] }
+        : { orderBy?: EventGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EventGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEventGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Event model
+   */
+  readonly fields: EventFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Event.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EventClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Event model
+   */
+  interface EventFieldRefs {
+    readonly id: FieldRef<"Event", 'String'>
+    readonly userId: FieldRef<"Event", 'String'>
+    readonly type: FieldRef<"Event", 'String'>
+    readonly metadata: FieldRef<"Event", 'Json'>
+    readonly campaignId: FieldRef<"Event", 'String'>
+    readonly createdAt: FieldRef<"Event", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Event findUnique
+   */
+  export type EventFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Event
+     */
+    select?: EventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Event
+     */
+    omit?: EventOmit<ExtArgs> | null
+    /**
+     * Filter, which Event to fetch.
+     */
+    where: EventWhereUniqueInput
+  }
+
+  /**
+   * Event findUniqueOrThrow
+   */
+  export type EventFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Event
+     */
+    select?: EventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Event
+     */
+    omit?: EventOmit<ExtArgs> | null
+    /**
+     * Filter, which Event to fetch.
+     */
+    where: EventWhereUniqueInput
+  }
+
+  /**
+   * Event findFirst
+   */
+  export type EventFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Event
+     */
+    select?: EventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Event
+     */
+    omit?: EventOmit<ExtArgs> | null
+    /**
+     * Filter, which Event to fetch.
+     */
+    where?: EventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Events to fetch.
+     */
+    orderBy?: EventOrderByWithRelationInput | EventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Events.
+     */
+    cursor?: EventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Events from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Events.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Events.
+     */
+    distinct?: EventScalarFieldEnum | EventScalarFieldEnum[]
+  }
+
+  /**
+   * Event findFirstOrThrow
+   */
+  export type EventFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Event
+     */
+    select?: EventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Event
+     */
+    omit?: EventOmit<ExtArgs> | null
+    /**
+     * Filter, which Event to fetch.
+     */
+    where?: EventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Events to fetch.
+     */
+    orderBy?: EventOrderByWithRelationInput | EventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Events.
+     */
+    cursor?: EventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Events from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Events.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Events.
+     */
+    distinct?: EventScalarFieldEnum | EventScalarFieldEnum[]
+  }
+
+  /**
+   * Event findMany
+   */
+  export type EventFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Event
+     */
+    select?: EventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Event
+     */
+    omit?: EventOmit<ExtArgs> | null
+    /**
+     * Filter, which Events to fetch.
+     */
+    where?: EventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Events to fetch.
+     */
+    orderBy?: EventOrderByWithRelationInput | EventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Events.
+     */
+    cursor?: EventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Events from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Events.
+     */
+    skip?: number
+    distinct?: EventScalarFieldEnum | EventScalarFieldEnum[]
+  }
+
+  /**
+   * Event create
+   */
+  export type EventCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Event
+     */
+    select?: EventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Event
+     */
+    omit?: EventOmit<ExtArgs> | null
+    /**
+     * The data needed to create a Event.
+     */
+    data: XOR<EventCreateInput, EventUncheckedCreateInput>
+  }
+
+  /**
+   * Event createMany
+   */
+  export type EventCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Events.
+     */
+    data: EventCreateManyInput | EventCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Event createManyAndReturn
+   */
+  export type EventCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Event
+     */
+    select?: EventSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Event
+     */
+    omit?: EventOmit<ExtArgs> | null
+    /**
+     * The data used to create many Events.
+     */
+    data: EventCreateManyInput | EventCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Event update
+   */
+  export type EventUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Event
+     */
+    select?: EventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Event
+     */
+    omit?: EventOmit<ExtArgs> | null
+    /**
+     * The data needed to update a Event.
+     */
+    data: XOR<EventUpdateInput, EventUncheckedUpdateInput>
+    /**
+     * Choose, which Event to update.
+     */
+    where: EventWhereUniqueInput
+  }
+
+  /**
+   * Event updateMany
+   */
+  export type EventUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Events.
+     */
+    data: XOR<EventUpdateManyMutationInput, EventUncheckedUpdateManyInput>
+    /**
+     * Filter which Events to update
+     */
+    where?: EventWhereInput
+    /**
+     * Limit how many Events to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Event updateManyAndReturn
+   */
+  export type EventUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Event
+     */
+    select?: EventSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Event
+     */
+    omit?: EventOmit<ExtArgs> | null
+    /**
+     * The data used to update Events.
+     */
+    data: XOR<EventUpdateManyMutationInput, EventUncheckedUpdateManyInput>
+    /**
+     * Filter which Events to update
+     */
+    where?: EventWhereInput
+    /**
+     * Limit how many Events to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Event upsert
+   */
+  export type EventUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Event
+     */
+    select?: EventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Event
+     */
+    omit?: EventOmit<ExtArgs> | null
+    /**
+     * The filter to search for the Event to update in case it exists.
+     */
+    where: EventWhereUniqueInput
+    /**
+     * In case the Event found by the `where` argument doesn't exist, create a new Event with this data.
+     */
+    create: XOR<EventCreateInput, EventUncheckedCreateInput>
+    /**
+     * In case the Event was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EventUpdateInput, EventUncheckedUpdateInput>
+  }
+
+  /**
+   * Event delete
+   */
+  export type EventDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Event
+     */
+    select?: EventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Event
+     */
+    omit?: EventOmit<ExtArgs> | null
+    /**
+     * Filter which Event to delete.
+     */
+    where: EventWhereUniqueInput
+  }
+
+  /**
+   * Event deleteMany
+   */
+  export type EventDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Events to delete
+     */
+    where?: EventWhereInput
+    /**
+     * Limit how many Events to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Event without action
+   */
+  export type EventDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Event
+     */
+    select?: EventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Event
+     */
+    omit?: EventOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FailureLog
+   */
+
+  export type AggregateFailureLog = {
+    _count: FailureLogCountAggregateOutputType | null
+    _min: FailureLogMinAggregateOutputType | null
+    _max: FailureLogMaxAggregateOutputType | null
+  }
+
+  export type FailureLogMinAggregateOutputType = {
+    id: string | null
+    jobId: string | null
+    campaignId: string | null
+    notified: boolean | null
+    createdAt: Date | null
+  }
+
+  export type FailureLogMaxAggregateOutputType = {
+    id: string | null
+    jobId: string | null
+    campaignId: string | null
+    notified: boolean | null
+    createdAt: Date | null
+  }
+
+  export type FailureLogCountAggregateOutputType = {
+    id: number
+    jobId: number
+    campaignId: number
+    error: number
+    notified: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type FailureLogMinAggregateInputType = {
+    id?: true
+    jobId?: true
+    campaignId?: true
+    notified?: true
+    createdAt?: true
+  }
+
+  export type FailureLogMaxAggregateInputType = {
+    id?: true
+    jobId?: true
+    campaignId?: true
+    notified?: true
+    createdAt?: true
+  }
+
+  export type FailureLogCountAggregateInputType = {
+    id?: true
+    jobId?: true
+    campaignId?: true
+    error?: true
+    notified?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type FailureLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FailureLog to aggregate.
+     */
+    where?: FailureLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FailureLogs to fetch.
+     */
+    orderBy?: FailureLogOrderByWithRelationInput | FailureLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FailureLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FailureLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FailureLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FailureLogs
+    **/
+    _count?: true | FailureLogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FailureLogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FailureLogMaxAggregateInputType
+  }
+
+  export type GetFailureLogAggregateType<T extends FailureLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateFailureLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFailureLog[P]>
+      : GetScalarType<T[P], AggregateFailureLog[P]>
+  }
+
+
+
+
+  export type FailureLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FailureLogWhereInput
+    orderBy?: FailureLogOrderByWithAggregationInput | FailureLogOrderByWithAggregationInput[]
+    by: FailureLogScalarFieldEnum[] | FailureLogScalarFieldEnum
+    having?: FailureLogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FailureLogCountAggregateInputType | true
+    _min?: FailureLogMinAggregateInputType
+    _max?: FailureLogMaxAggregateInputType
+  }
+
+  export type FailureLogGroupByOutputType = {
+    id: string
+    jobId: string
+    campaignId: string
+    error: JsonValue
+    notified: boolean
+    createdAt: Date
+    _count: FailureLogCountAggregateOutputType | null
+    _min: FailureLogMinAggregateOutputType | null
+    _max: FailureLogMaxAggregateOutputType | null
+  }
+
+  type GetFailureLogGroupByPayload<T extends FailureLogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FailureLogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FailureLogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FailureLogGroupByOutputType[P]>
+            : GetScalarType<T[P], FailureLogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FailureLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    jobId?: boolean
+    campaignId?: boolean
+    error?: boolean
+    notified?: boolean
+    createdAt?: boolean
+    job?: boolean | CampaignJobDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["failureLog"]>
+
+  export type FailureLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    jobId?: boolean
+    campaignId?: boolean
+    error?: boolean
+    notified?: boolean
+    createdAt?: boolean
+    job?: boolean | CampaignJobDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["failureLog"]>
+
+  export type FailureLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    jobId?: boolean
+    campaignId?: boolean
+    error?: boolean
+    notified?: boolean
+    createdAt?: boolean
+    job?: boolean | CampaignJobDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["failureLog"]>
+
+  export type FailureLogSelectScalar = {
+    id?: boolean
+    jobId?: boolean
+    campaignId?: boolean
+    error?: boolean
+    notified?: boolean
+    createdAt?: boolean
+  }
+
+  export type FailureLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "jobId" | "campaignId" | "error" | "notified" | "createdAt", ExtArgs["result"]["failureLog"]>
+  export type FailureLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    job?: boolean | CampaignJobDefaultArgs<ExtArgs>
+  }
+  export type FailureLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    job?: boolean | CampaignJobDefaultArgs<ExtArgs>
+  }
+  export type FailureLogIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    job?: boolean | CampaignJobDefaultArgs<ExtArgs>
+  }
+
+  export type $FailureLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FailureLog"
+    objects: {
+      job: Prisma.$CampaignJobPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      jobId: string
+      campaignId: string
+      error: Prisma.JsonValue
+      notified: boolean
+      createdAt: Date
+    }, ExtArgs["result"]["failureLog"]>
+    composites: {}
+  }
+
+  type FailureLogGetPayload<S extends boolean | null | undefined | FailureLogDefaultArgs> = $Result.GetResult<Prisma.$FailureLogPayload, S>
+
+  type FailureLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FailureLogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FailureLogCountAggregateInputType | true
+    }
+
+  export interface FailureLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FailureLog'], meta: { name: 'FailureLog' } }
+    /**
+     * Find zero or one FailureLog that matches the filter.
+     * @param {FailureLogFindUniqueArgs} args - Arguments to find a FailureLog
+     * @example
+     * // Get one FailureLog
+     * const failureLog = await prisma.failureLog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FailureLogFindUniqueArgs>(args: SelectSubset<T, FailureLogFindUniqueArgs<ExtArgs>>): Prisma__FailureLogClient<$Result.GetResult<Prisma.$FailureLogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FailureLog that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FailureLogFindUniqueOrThrowArgs} args - Arguments to find a FailureLog
+     * @example
+     * // Get one FailureLog
+     * const failureLog = await prisma.failureLog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FailureLogFindUniqueOrThrowArgs>(args: SelectSubset<T, FailureLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FailureLogClient<$Result.GetResult<Prisma.$FailureLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FailureLog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FailureLogFindFirstArgs} args - Arguments to find a FailureLog
+     * @example
+     * // Get one FailureLog
+     * const failureLog = await prisma.failureLog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FailureLogFindFirstArgs>(args?: SelectSubset<T, FailureLogFindFirstArgs<ExtArgs>>): Prisma__FailureLogClient<$Result.GetResult<Prisma.$FailureLogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FailureLog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FailureLogFindFirstOrThrowArgs} args - Arguments to find a FailureLog
+     * @example
+     * // Get one FailureLog
+     * const failureLog = await prisma.failureLog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FailureLogFindFirstOrThrowArgs>(args?: SelectSubset<T, FailureLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__FailureLogClient<$Result.GetResult<Prisma.$FailureLogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FailureLogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FailureLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FailureLogs
+     * const failureLogs = await prisma.failureLog.findMany()
+     * 
+     * // Get first 10 FailureLogs
+     * const failureLogs = await prisma.failureLog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const failureLogWithIdOnly = await prisma.failureLog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FailureLogFindManyArgs>(args?: SelectSubset<T, FailureLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FailureLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FailureLog.
+     * @param {FailureLogCreateArgs} args - Arguments to create a FailureLog.
+     * @example
+     * // Create one FailureLog
+     * const FailureLog = await prisma.failureLog.create({
+     *   data: {
+     *     // ... data to create a FailureLog
+     *   }
+     * })
+     * 
+     */
+    create<T extends FailureLogCreateArgs>(args: SelectSubset<T, FailureLogCreateArgs<ExtArgs>>): Prisma__FailureLogClient<$Result.GetResult<Prisma.$FailureLogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FailureLogs.
+     * @param {FailureLogCreateManyArgs} args - Arguments to create many FailureLogs.
+     * @example
+     * // Create many FailureLogs
+     * const failureLog = await prisma.failureLog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FailureLogCreateManyArgs>(args?: SelectSubset<T, FailureLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FailureLogs and returns the data saved in the database.
+     * @param {FailureLogCreateManyAndReturnArgs} args - Arguments to create many FailureLogs.
+     * @example
+     * // Create many FailureLogs
+     * const failureLog = await prisma.failureLog.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FailureLogs and only return the `id`
+     * const failureLogWithIdOnly = await prisma.failureLog.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FailureLogCreateManyAndReturnArgs>(args?: SelectSubset<T, FailureLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FailureLogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FailureLog.
+     * @param {FailureLogDeleteArgs} args - Arguments to delete one FailureLog.
+     * @example
+     * // Delete one FailureLog
+     * const FailureLog = await prisma.failureLog.delete({
+     *   where: {
+     *     // ... filter to delete one FailureLog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FailureLogDeleteArgs>(args: SelectSubset<T, FailureLogDeleteArgs<ExtArgs>>): Prisma__FailureLogClient<$Result.GetResult<Prisma.$FailureLogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FailureLog.
+     * @param {FailureLogUpdateArgs} args - Arguments to update one FailureLog.
+     * @example
+     * // Update one FailureLog
+     * const failureLog = await prisma.failureLog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FailureLogUpdateArgs>(args: SelectSubset<T, FailureLogUpdateArgs<ExtArgs>>): Prisma__FailureLogClient<$Result.GetResult<Prisma.$FailureLogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FailureLogs.
+     * @param {FailureLogDeleteManyArgs} args - Arguments to filter FailureLogs to delete.
+     * @example
+     * // Delete a few FailureLogs
+     * const { count } = await prisma.failureLog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FailureLogDeleteManyArgs>(args?: SelectSubset<T, FailureLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FailureLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FailureLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FailureLogs
+     * const failureLog = await prisma.failureLog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FailureLogUpdateManyArgs>(args: SelectSubset<T, FailureLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FailureLogs and returns the data updated in the database.
+     * @param {FailureLogUpdateManyAndReturnArgs} args - Arguments to update many FailureLogs.
+     * @example
+     * // Update many FailureLogs
+     * const failureLog = await prisma.failureLog.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FailureLogs and only return the `id`
+     * const failureLogWithIdOnly = await prisma.failureLog.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FailureLogUpdateManyAndReturnArgs>(args: SelectSubset<T, FailureLogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FailureLogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FailureLog.
+     * @param {FailureLogUpsertArgs} args - Arguments to update or create a FailureLog.
+     * @example
+     * // Update or create a FailureLog
+     * const failureLog = await prisma.failureLog.upsert({
+     *   create: {
+     *     // ... data to create a FailureLog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FailureLog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FailureLogUpsertArgs>(args: SelectSubset<T, FailureLogUpsertArgs<ExtArgs>>): Prisma__FailureLogClient<$Result.GetResult<Prisma.$FailureLogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FailureLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FailureLogCountArgs} args - Arguments to filter FailureLogs to count.
+     * @example
+     * // Count the number of FailureLogs
+     * const count = await prisma.failureLog.count({
+     *   where: {
+     *     // ... the filter for the FailureLogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends FailureLogCountArgs>(
+      args?: Subset<T, FailureLogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FailureLogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FailureLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FailureLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FailureLogAggregateArgs>(args: Subset<T, FailureLogAggregateArgs>): Prisma.PrismaPromise<GetFailureLogAggregateType<T>>
+
+    /**
+     * Group by FailureLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FailureLogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FailureLogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FailureLogGroupByArgs['orderBy'] }
+        : { orderBy?: FailureLogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FailureLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFailureLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FailureLog model
+   */
+  readonly fields: FailureLogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FailureLog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FailureLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    job<T extends CampaignJobDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CampaignJobDefaultArgs<ExtArgs>>): Prisma__CampaignJobClient<$Result.GetResult<Prisma.$CampaignJobPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FailureLog model
+   */
+  interface FailureLogFieldRefs {
+    readonly id: FieldRef<"FailureLog", 'String'>
+    readonly jobId: FieldRef<"FailureLog", 'String'>
+    readonly campaignId: FieldRef<"FailureLog", 'String'>
+    readonly error: FieldRef<"FailureLog", 'Json'>
+    readonly notified: FieldRef<"FailureLog", 'Boolean'>
+    readonly createdAt: FieldRef<"FailureLog", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FailureLog findUnique
+   */
+  export type FailureLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FailureLog
+     */
+    select?: FailureLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FailureLog
+     */
+    omit?: FailureLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FailureLogInclude<ExtArgs> | null
+    /**
+     * Filter, which FailureLog to fetch.
+     */
+    where: FailureLogWhereUniqueInput
+  }
+
+  /**
+   * FailureLog findUniqueOrThrow
+   */
+  export type FailureLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FailureLog
+     */
+    select?: FailureLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FailureLog
+     */
+    omit?: FailureLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FailureLogInclude<ExtArgs> | null
+    /**
+     * Filter, which FailureLog to fetch.
+     */
+    where: FailureLogWhereUniqueInput
+  }
+
+  /**
+   * FailureLog findFirst
+   */
+  export type FailureLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FailureLog
+     */
+    select?: FailureLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FailureLog
+     */
+    omit?: FailureLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FailureLogInclude<ExtArgs> | null
+    /**
+     * Filter, which FailureLog to fetch.
+     */
+    where?: FailureLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FailureLogs to fetch.
+     */
+    orderBy?: FailureLogOrderByWithRelationInput | FailureLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FailureLogs.
+     */
+    cursor?: FailureLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FailureLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FailureLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FailureLogs.
+     */
+    distinct?: FailureLogScalarFieldEnum | FailureLogScalarFieldEnum[]
+  }
+
+  /**
+   * FailureLog findFirstOrThrow
+   */
+  export type FailureLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FailureLog
+     */
+    select?: FailureLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FailureLog
+     */
+    omit?: FailureLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FailureLogInclude<ExtArgs> | null
+    /**
+     * Filter, which FailureLog to fetch.
+     */
+    where?: FailureLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FailureLogs to fetch.
+     */
+    orderBy?: FailureLogOrderByWithRelationInput | FailureLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FailureLogs.
+     */
+    cursor?: FailureLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FailureLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FailureLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FailureLogs.
+     */
+    distinct?: FailureLogScalarFieldEnum | FailureLogScalarFieldEnum[]
+  }
+
+  /**
+   * FailureLog findMany
+   */
+  export type FailureLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FailureLog
+     */
+    select?: FailureLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FailureLog
+     */
+    omit?: FailureLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FailureLogInclude<ExtArgs> | null
+    /**
+     * Filter, which FailureLogs to fetch.
+     */
+    where?: FailureLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FailureLogs to fetch.
+     */
+    orderBy?: FailureLogOrderByWithRelationInput | FailureLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FailureLogs.
+     */
+    cursor?: FailureLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FailureLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FailureLogs.
+     */
+    skip?: number
+    distinct?: FailureLogScalarFieldEnum | FailureLogScalarFieldEnum[]
+  }
+
+  /**
+   * FailureLog create
+   */
+  export type FailureLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FailureLog
+     */
+    select?: FailureLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FailureLog
+     */
+    omit?: FailureLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FailureLogInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FailureLog.
+     */
+    data: XOR<FailureLogCreateInput, FailureLogUncheckedCreateInput>
+  }
+
+  /**
+   * FailureLog createMany
+   */
+  export type FailureLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FailureLogs.
+     */
+    data: FailureLogCreateManyInput | FailureLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FailureLog createManyAndReturn
+   */
+  export type FailureLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FailureLog
+     */
+    select?: FailureLogSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FailureLog
+     */
+    omit?: FailureLogOmit<ExtArgs> | null
+    /**
+     * The data used to create many FailureLogs.
+     */
+    data: FailureLogCreateManyInput | FailureLogCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FailureLogIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FailureLog update
+   */
+  export type FailureLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FailureLog
+     */
+    select?: FailureLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FailureLog
+     */
+    omit?: FailureLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FailureLogInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FailureLog.
+     */
+    data: XOR<FailureLogUpdateInput, FailureLogUncheckedUpdateInput>
+    /**
+     * Choose, which FailureLog to update.
+     */
+    where: FailureLogWhereUniqueInput
+  }
+
+  /**
+   * FailureLog updateMany
+   */
+  export type FailureLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FailureLogs.
+     */
+    data: XOR<FailureLogUpdateManyMutationInput, FailureLogUncheckedUpdateManyInput>
+    /**
+     * Filter which FailureLogs to update
+     */
+    where?: FailureLogWhereInput
+    /**
+     * Limit how many FailureLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FailureLog updateManyAndReturn
+   */
+  export type FailureLogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FailureLog
+     */
+    select?: FailureLogSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FailureLog
+     */
+    omit?: FailureLogOmit<ExtArgs> | null
+    /**
+     * The data used to update FailureLogs.
+     */
+    data: XOR<FailureLogUpdateManyMutationInput, FailureLogUncheckedUpdateManyInput>
+    /**
+     * Filter which FailureLogs to update
+     */
+    where?: FailureLogWhereInput
+    /**
+     * Limit how many FailureLogs to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FailureLogIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FailureLog upsert
+   */
+  export type FailureLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FailureLog
+     */
+    select?: FailureLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FailureLog
+     */
+    omit?: FailureLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FailureLogInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FailureLog to update in case it exists.
+     */
+    where: FailureLogWhereUniqueInput
+    /**
+     * In case the FailureLog found by the `where` argument doesn't exist, create a new FailureLog with this data.
+     */
+    create: XOR<FailureLogCreateInput, FailureLogUncheckedCreateInput>
+    /**
+     * In case the FailureLog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FailureLogUpdateInput, FailureLogUncheckedUpdateInput>
+  }
+
+  /**
+   * FailureLog delete
+   */
+  export type FailureLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FailureLog
+     */
+    select?: FailureLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FailureLog
+     */
+    omit?: FailureLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FailureLogInclude<ExtArgs> | null
+    /**
+     * Filter which FailureLog to delete.
+     */
+    where: FailureLogWhereUniqueInput
+  }
+
+  /**
+   * FailureLog deleteMany
+   */
+  export type FailureLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FailureLogs to delete
+     */
+    where?: FailureLogWhereInput
+    /**
+     * Limit how many FailureLogs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FailureLog without action
+   */
+  export type FailureLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FailureLog
+     */
+    select?: FailureLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FailureLog
+     */
+    omit?: FailureLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FailureLogInclude<ExtArgs> | null
   }
 
 
@@ -5589,6 +9131,7 @@ export namespace Prisma {
     status: 'status',
     scheduledAt: 'scheduledAt',
     flowId: 'flowId',
+    segmentId: 'segmentId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -5619,6 +9162,41 @@ export namespace Prisma {
   };
 
   export type CampaignJobScalarFieldEnum = (typeof CampaignJobScalarFieldEnum)[keyof typeof CampaignJobScalarFieldEnum]
+
+
+  export const SegmentScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    filters: 'filters',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type SegmentScalarFieldEnum = (typeof SegmentScalarFieldEnum)[keyof typeof SegmentScalarFieldEnum]
+
+
+  export const EventScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    type: 'type',
+    metadata: 'metadata',
+    campaignId: 'campaignId',
+    createdAt: 'createdAt'
+  };
+
+  export type EventScalarFieldEnum = (typeof EventScalarFieldEnum)[keyof typeof EventScalarFieldEnum]
+
+
+  export const FailureLogScalarFieldEnum: {
+    id: 'id',
+    jobId: 'jobId',
+    campaignId: 'campaignId',
+    error: 'error',
+    notified: 'notified',
+    createdAt: 'createdAt'
+  };
+
+  export type FailureLogScalarFieldEnum = (typeof FailureLogScalarFieldEnum)[keyof typeof FailureLogScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -5773,6 +9351,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -5855,9 +9440,11 @@ export namespace Prisma {
     status?: EnumCampaignStatusFilter<"Campaign"> | $Enums.CampaignStatus
     scheduledAt?: DateTimeNullableFilter<"Campaign"> | Date | string | null
     flowId?: StringFilter<"Campaign"> | string
+    segmentId?: StringNullableFilter<"Campaign"> | string | null
     createdAt?: DateTimeFilter<"Campaign"> | Date | string
     updatedAt?: DateTimeFilter<"Campaign"> | Date | string
     flow?: XOR<FlowScalarRelationFilter, FlowWhereInput>
+    segment?: XOR<SegmentNullableScalarRelationFilter, SegmentWhereInput> | null
     jobs?: CampaignJobListRelationFilter
   }
 
@@ -5867,9 +9454,11 @@ export namespace Prisma {
     status?: SortOrder
     scheduledAt?: SortOrderInput | SortOrder
     flowId?: SortOrder
+    segmentId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     flow?: FlowOrderByWithRelationInput
+    segment?: SegmentOrderByWithRelationInput
     jobs?: CampaignJobOrderByRelationAggregateInput
   }
 
@@ -5882,9 +9471,11 @@ export namespace Prisma {
     status?: EnumCampaignStatusFilter<"Campaign"> | $Enums.CampaignStatus
     scheduledAt?: DateTimeNullableFilter<"Campaign"> | Date | string | null
     flowId?: StringFilter<"Campaign"> | string
+    segmentId?: StringNullableFilter<"Campaign"> | string | null
     createdAt?: DateTimeFilter<"Campaign"> | Date | string
     updatedAt?: DateTimeFilter<"Campaign"> | Date | string
     flow?: XOR<FlowScalarRelationFilter, FlowWhereInput>
+    segment?: XOR<SegmentNullableScalarRelationFilter, SegmentWhereInput> | null
     jobs?: CampaignJobListRelationFilter
   }, "id">
 
@@ -5894,6 +9485,7 @@ export namespace Prisma {
     status?: SortOrder
     scheduledAt?: SortOrderInput | SortOrder
     flowId?: SortOrder
+    segmentId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: CampaignCountOrderByAggregateInput
@@ -5910,6 +9502,7 @@ export namespace Prisma {
     status?: EnumCampaignStatusWithAggregatesFilter<"Campaign"> | $Enums.CampaignStatus
     scheduledAt?: DateTimeNullableWithAggregatesFilter<"Campaign"> | Date | string | null
     flowId?: StringWithAggregatesFilter<"Campaign"> | string
+    segmentId?: StringNullableWithAggregatesFilter<"Campaign"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Campaign"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Campaign"> | Date | string
   }
@@ -5988,6 +9581,7 @@ export namespace Prisma {
     processedAt?: DateTimeNullableFilter<"CampaignJob"> | Date | string | null
     createdAt?: DateTimeFilter<"CampaignJob"> | Date | string
     campaign?: XOR<CampaignScalarRelationFilter, CampaignWhereInput>
+    failureLogs?: FailureLogListRelationFilter
   }
 
   export type CampaignJobOrderByWithRelationInput = {
@@ -5999,6 +9593,7 @@ export namespace Prisma {
     processedAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     campaign?: CampaignOrderByWithRelationInput
+    failureLogs?: FailureLogOrderByRelationAggregateInput
   }
 
   export type CampaignJobWhereUniqueInput = Prisma.AtLeast<{
@@ -6013,6 +9608,7 @@ export namespace Prisma {
     processedAt?: DateTimeNullableFilter<"CampaignJob"> | Date | string | null
     createdAt?: DateTimeFilter<"CampaignJob"> | Date | string
     campaign?: XOR<CampaignScalarRelationFilter, CampaignWhereInput>
+    failureLogs?: FailureLogListRelationFilter
   }, "id">
 
   export type CampaignJobOrderByWithAggregationInput = {
@@ -6039,6 +9635,178 @@ export namespace Prisma {
     result?: JsonNullableWithAggregatesFilter<"CampaignJob">
     processedAt?: DateTimeNullableWithAggregatesFilter<"CampaignJob"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"CampaignJob"> | Date | string
+  }
+
+  export type SegmentWhereInput = {
+    AND?: SegmentWhereInput | SegmentWhereInput[]
+    OR?: SegmentWhereInput[]
+    NOT?: SegmentWhereInput | SegmentWhereInput[]
+    id?: StringFilter<"Segment"> | string
+    name?: StringFilter<"Segment"> | string
+    filters?: JsonFilter<"Segment">
+    createdAt?: DateTimeFilter<"Segment"> | Date | string
+    updatedAt?: DateTimeFilter<"Segment"> | Date | string
+    campaigns?: CampaignListRelationFilter
+  }
+
+  export type SegmentOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    filters?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    campaigns?: CampaignOrderByRelationAggregateInput
+  }
+
+  export type SegmentWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: SegmentWhereInput | SegmentWhereInput[]
+    OR?: SegmentWhereInput[]
+    NOT?: SegmentWhereInput | SegmentWhereInput[]
+    name?: StringFilter<"Segment"> | string
+    filters?: JsonFilter<"Segment">
+    createdAt?: DateTimeFilter<"Segment"> | Date | string
+    updatedAt?: DateTimeFilter<"Segment"> | Date | string
+    campaigns?: CampaignListRelationFilter
+  }, "id">
+
+  export type SegmentOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    filters?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: SegmentCountOrderByAggregateInput
+    _max?: SegmentMaxOrderByAggregateInput
+    _min?: SegmentMinOrderByAggregateInput
+  }
+
+  export type SegmentScalarWhereWithAggregatesInput = {
+    AND?: SegmentScalarWhereWithAggregatesInput | SegmentScalarWhereWithAggregatesInput[]
+    OR?: SegmentScalarWhereWithAggregatesInput[]
+    NOT?: SegmentScalarWhereWithAggregatesInput | SegmentScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Segment"> | string
+    name?: StringWithAggregatesFilter<"Segment"> | string
+    filters?: JsonWithAggregatesFilter<"Segment">
+    createdAt?: DateTimeWithAggregatesFilter<"Segment"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Segment"> | Date | string
+  }
+
+  export type EventWhereInput = {
+    AND?: EventWhereInput | EventWhereInput[]
+    OR?: EventWhereInput[]
+    NOT?: EventWhereInput | EventWhereInput[]
+    id?: StringFilter<"Event"> | string
+    userId?: StringFilter<"Event"> | string
+    type?: StringFilter<"Event"> | string
+    metadata?: JsonFilter<"Event">
+    campaignId?: StringNullableFilter<"Event"> | string | null
+    createdAt?: DateTimeFilter<"Event"> | Date | string
+  }
+
+  export type EventOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    metadata?: SortOrder
+    campaignId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EventWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: EventWhereInput | EventWhereInput[]
+    OR?: EventWhereInput[]
+    NOT?: EventWhereInput | EventWhereInput[]
+    userId?: StringFilter<"Event"> | string
+    type?: StringFilter<"Event"> | string
+    metadata?: JsonFilter<"Event">
+    campaignId?: StringNullableFilter<"Event"> | string | null
+    createdAt?: DateTimeFilter<"Event"> | Date | string
+  }, "id">
+
+  export type EventOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    metadata?: SortOrder
+    campaignId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: EventCountOrderByAggregateInput
+    _max?: EventMaxOrderByAggregateInput
+    _min?: EventMinOrderByAggregateInput
+  }
+
+  export type EventScalarWhereWithAggregatesInput = {
+    AND?: EventScalarWhereWithAggregatesInput | EventScalarWhereWithAggregatesInput[]
+    OR?: EventScalarWhereWithAggregatesInput[]
+    NOT?: EventScalarWhereWithAggregatesInput | EventScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Event"> | string
+    userId?: StringWithAggregatesFilter<"Event"> | string
+    type?: StringWithAggregatesFilter<"Event"> | string
+    metadata?: JsonWithAggregatesFilter<"Event">
+    campaignId?: StringNullableWithAggregatesFilter<"Event"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Event"> | Date | string
+  }
+
+  export type FailureLogWhereInput = {
+    AND?: FailureLogWhereInput | FailureLogWhereInput[]
+    OR?: FailureLogWhereInput[]
+    NOT?: FailureLogWhereInput | FailureLogWhereInput[]
+    id?: StringFilter<"FailureLog"> | string
+    jobId?: StringFilter<"FailureLog"> | string
+    campaignId?: StringFilter<"FailureLog"> | string
+    error?: JsonFilter<"FailureLog">
+    notified?: BoolFilter<"FailureLog"> | boolean
+    createdAt?: DateTimeFilter<"FailureLog"> | Date | string
+    job?: XOR<CampaignJobScalarRelationFilter, CampaignJobWhereInput>
+  }
+
+  export type FailureLogOrderByWithRelationInput = {
+    id?: SortOrder
+    jobId?: SortOrder
+    campaignId?: SortOrder
+    error?: SortOrder
+    notified?: SortOrder
+    createdAt?: SortOrder
+    job?: CampaignJobOrderByWithRelationInput
+  }
+
+  export type FailureLogWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: FailureLogWhereInput | FailureLogWhereInput[]
+    OR?: FailureLogWhereInput[]
+    NOT?: FailureLogWhereInput | FailureLogWhereInput[]
+    jobId?: StringFilter<"FailureLog"> | string
+    campaignId?: StringFilter<"FailureLog"> | string
+    error?: JsonFilter<"FailureLog">
+    notified?: BoolFilter<"FailureLog"> | boolean
+    createdAt?: DateTimeFilter<"FailureLog"> | Date | string
+    job?: XOR<CampaignJobScalarRelationFilter, CampaignJobWhereInput>
+  }, "id">
+
+  export type FailureLogOrderByWithAggregationInput = {
+    id?: SortOrder
+    jobId?: SortOrder
+    campaignId?: SortOrder
+    error?: SortOrder
+    notified?: SortOrder
+    createdAt?: SortOrder
+    _count?: FailureLogCountOrderByAggregateInput
+    _max?: FailureLogMaxOrderByAggregateInput
+    _min?: FailureLogMinOrderByAggregateInput
+  }
+
+  export type FailureLogScalarWhereWithAggregatesInput = {
+    AND?: FailureLogScalarWhereWithAggregatesInput | FailureLogScalarWhereWithAggregatesInput[]
+    OR?: FailureLogScalarWhereWithAggregatesInput[]
+    NOT?: FailureLogScalarWhereWithAggregatesInput | FailureLogScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FailureLog"> | string
+    jobId?: StringWithAggregatesFilter<"FailureLog"> | string
+    campaignId?: StringWithAggregatesFilter<"FailureLog"> | string
+    error?: JsonWithAggregatesFilter<"FailureLog">
+    notified?: BoolWithAggregatesFilter<"FailureLog"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"FailureLog"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -6112,6 +9880,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     flow: FlowCreateNestedOneWithoutCampaignsInput
+    segment?: SegmentCreateNestedOneWithoutCampaignsInput
     jobs?: CampaignJobCreateNestedManyWithoutCampaignInput
   }
 
@@ -6121,6 +9890,7 @@ export namespace Prisma {
     status?: $Enums.CampaignStatus
     scheduledAt?: Date | string | null
     flowId: string
+    segmentId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     jobs?: CampaignJobUncheckedCreateNestedManyWithoutCampaignInput
@@ -6134,6 +9904,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     flow?: FlowUpdateOneRequiredWithoutCampaignsNestedInput
+    segment?: SegmentUpdateOneWithoutCampaignsNestedInput
     jobs?: CampaignJobUpdateManyWithoutCampaignNestedInput
   }
 
@@ -6143,6 +9914,7 @@ export namespace Prisma {
     status?: EnumCampaignStatusFieldUpdateOperationsInput | $Enums.CampaignStatus
     scheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     flowId?: StringFieldUpdateOperationsInput | string
+    segmentId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     jobs?: CampaignJobUncheckedUpdateManyWithoutCampaignNestedInput
@@ -6154,6 +9926,7 @@ export namespace Prisma {
     status?: $Enums.CampaignStatus
     scheduledAt?: Date | string | null
     flowId: string
+    segmentId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -6173,6 +9946,7 @@ export namespace Prisma {
     status?: EnumCampaignStatusFieldUpdateOperationsInput | $Enums.CampaignStatus
     scheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     flowId?: StringFieldUpdateOperationsInput | string
+    segmentId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6252,6 +10026,7 @@ export namespace Prisma {
     processedAt?: Date | string | null
     createdAt?: Date | string
     campaign: CampaignCreateNestedOneWithoutJobsInput
+    failureLogs?: FailureLogCreateNestedManyWithoutJobInput
   }
 
   export type CampaignJobUncheckedCreateInput = {
@@ -6262,6 +10037,7 @@ export namespace Prisma {
     result?: NullableJsonNullValueInput | InputJsonValue
     processedAt?: Date | string | null
     createdAt?: Date | string
+    failureLogs?: FailureLogUncheckedCreateNestedManyWithoutJobInput
   }
 
   export type CampaignJobUpdateInput = {
@@ -6272,6 +10048,7 @@ export namespace Prisma {
     processedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     campaign?: CampaignUpdateOneRequiredWithoutJobsNestedInput
+    failureLogs?: FailureLogUpdateManyWithoutJobNestedInput
   }
 
   export type CampaignJobUncheckedUpdateInput = {
@@ -6282,6 +10059,7 @@ export namespace Prisma {
     result?: NullableJsonNullValueInput | InputJsonValue
     processedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    failureLogs?: FailureLogUncheckedUpdateManyWithoutJobNestedInput
   }
 
   export type CampaignJobCreateManyInput = {
@@ -6310,6 +10088,191 @@ export namespace Prisma {
     status?: EnumJobStatusFieldUpdateOperationsInput | $Enums.JobStatus
     result?: NullableJsonNullValueInput | InputJsonValue
     processedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SegmentCreateInput = {
+    id?: string
+    name: string
+    filters: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    campaigns?: CampaignCreateNestedManyWithoutSegmentInput
+  }
+
+  export type SegmentUncheckedCreateInput = {
+    id?: string
+    name: string
+    filters: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    campaigns?: CampaignUncheckedCreateNestedManyWithoutSegmentInput
+  }
+
+  export type SegmentUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    filters?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    campaigns?: CampaignUpdateManyWithoutSegmentNestedInput
+  }
+
+  export type SegmentUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    filters?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    campaigns?: CampaignUncheckedUpdateManyWithoutSegmentNestedInput
+  }
+
+  export type SegmentCreateManyInput = {
+    id?: string
+    name: string
+    filters: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SegmentUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    filters?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SegmentUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    filters?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EventCreateInput = {
+    id?: string
+    userId: string
+    type: string
+    metadata: JsonNullValueInput | InputJsonValue
+    campaignId?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EventUncheckedCreateInput = {
+    id?: string
+    userId: string
+    type: string
+    metadata: JsonNullValueInput | InputJsonValue
+    campaignId?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EventUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    metadata?: JsonNullValueInput | InputJsonValue
+    campaignId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EventUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    metadata?: JsonNullValueInput | InputJsonValue
+    campaignId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EventCreateManyInput = {
+    id?: string
+    userId: string
+    type: string
+    metadata: JsonNullValueInput | InputJsonValue
+    campaignId?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EventUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    metadata?: JsonNullValueInput | InputJsonValue
+    campaignId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EventUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    metadata?: JsonNullValueInput | InputJsonValue
+    campaignId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FailureLogCreateInput = {
+    id?: string
+    campaignId: string
+    error: JsonNullValueInput | InputJsonValue
+    notified?: boolean
+    createdAt?: Date | string
+    job: CampaignJobCreateNestedOneWithoutFailureLogsInput
+  }
+
+  export type FailureLogUncheckedCreateInput = {
+    id?: string
+    jobId: string
+    campaignId: string
+    error: JsonNullValueInput | InputJsonValue
+    notified?: boolean
+    createdAt?: Date | string
+  }
+
+  export type FailureLogUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    campaignId?: StringFieldUpdateOperationsInput | string
+    error?: JsonNullValueInput | InputJsonValue
+    notified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    job?: CampaignJobUpdateOneRequiredWithoutFailureLogsNestedInput
+  }
+
+  export type FailureLogUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    jobId?: StringFieldUpdateOperationsInput | string
+    campaignId?: StringFieldUpdateOperationsInput | string
+    error?: JsonNullValueInput | InputJsonValue
+    notified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FailureLogCreateManyInput = {
+    id?: string
+    jobId: string
+    campaignId: string
+    error: JsonNullValueInput | InputJsonValue
+    notified?: boolean
+    createdAt?: Date | string
+  }
+
+  export type FailureLogUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    campaignId?: StringFieldUpdateOperationsInput | string
+    error?: JsonNullValueInput | InputJsonValue
+    notified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FailureLogUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    jobId?: StringFieldUpdateOperationsInput | string
+    campaignId?: StringFieldUpdateOperationsInput | string
+    error?: JsonNullValueInput | InputJsonValue
+    notified?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -6433,9 +10396,29 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type FlowScalarRelationFilter = {
     is?: FlowWhereInput
     isNot?: FlowWhereInput
+  }
+
+  export type SegmentNullableScalarRelationFilter = {
+    is?: SegmentWhereInput | null
+    isNot?: SegmentWhereInput | null
   }
 
   export type CampaignJobListRelationFilter = {
@@ -6459,6 +10442,7 @@ export namespace Prisma {
     status?: SortOrder
     scheduledAt?: SortOrder
     flowId?: SortOrder
+    segmentId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -6469,6 +10453,7 @@ export namespace Prisma {
     status?: SortOrder
     scheduledAt?: SortOrder
     flowId?: SortOrder
+    segmentId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -6479,6 +10464,7 @@ export namespace Prisma {
     status?: SortOrder
     scheduledAt?: SortOrder
     flowId?: SortOrder
+    segmentId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -6505,6 +10491,24 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
   export type JsonFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -6661,6 +10665,16 @@ export namespace Prisma {
     isNot?: CampaignWhereInput
   }
 
+  export type FailureLogListRelationFilter = {
+    every?: FailureLogWhereInput
+    some?: FailureLogWhereInput
+    none?: FailureLogWhereInput
+  }
+
+  export type FailureLogOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type CampaignJobCountOrderByAggregateInput = {
     id?: SortOrder
     campaignId?: SortOrder
@@ -6725,6 +10739,96 @@ export namespace Prisma {
     _max?: NestedJsonNullableFilter<$PrismaModel>
   }
 
+  export type SegmentCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    filters?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SegmentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SegmentMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EventCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    metadata?: SortOrder
+    campaignId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EventMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    campaignId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EventMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    campaignId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type CampaignJobScalarRelationFilter = {
+    is?: CampaignJobWhereInput
+    isNot?: CampaignJobWhereInput
+  }
+
+  export type FailureLogCountOrderByAggregateInput = {
+    id?: SortOrder
+    jobId?: SortOrder
+    campaignId?: SortOrder
+    error?: SortOrder
+    notified?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FailureLogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    jobId?: SortOrder
+    campaignId?: SortOrder
+    notified?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FailureLogMinOrderByAggregateInput = {
+    id?: SortOrder
+    jobId?: SortOrder
+    campaignId?: SortOrder
+    notified?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -6741,6 +10845,12 @@ export namespace Prisma {
     create?: XOR<FlowCreateWithoutCampaignsInput, FlowUncheckedCreateWithoutCampaignsInput>
     connectOrCreate?: FlowCreateOrConnectWithoutCampaignsInput
     connect?: FlowWhereUniqueInput
+  }
+
+  export type SegmentCreateNestedOneWithoutCampaignsInput = {
+    create?: XOR<SegmentCreateWithoutCampaignsInput, SegmentUncheckedCreateWithoutCampaignsInput>
+    connectOrCreate?: SegmentCreateOrConnectWithoutCampaignsInput
+    connect?: SegmentWhereUniqueInput
   }
 
   export type CampaignJobCreateNestedManyWithoutCampaignInput = {
@@ -6773,6 +10883,16 @@ export namespace Prisma {
     update?: XOR<XOR<FlowUpdateToOneWithWhereWithoutCampaignsInput, FlowUpdateWithoutCampaignsInput>, FlowUncheckedUpdateWithoutCampaignsInput>
   }
 
+  export type SegmentUpdateOneWithoutCampaignsNestedInput = {
+    create?: XOR<SegmentCreateWithoutCampaignsInput, SegmentUncheckedCreateWithoutCampaignsInput>
+    connectOrCreate?: SegmentCreateOrConnectWithoutCampaignsInput
+    upsert?: SegmentUpsertWithoutCampaignsInput
+    disconnect?: SegmentWhereInput | boolean
+    delete?: SegmentWhereInput | boolean
+    connect?: SegmentWhereUniqueInput
+    update?: XOR<XOR<SegmentUpdateToOneWithWhereWithoutCampaignsInput, SegmentUpdateWithoutCampaignsInput>, SegmentUncheckedUpdateWithoutCampaignsInput>
+  }
+
   export type CampaignJobUpdateManyWithoutCampaignNestedInput = {
     create?: XOR<CampaignJobCreateWithoutCampaignInput, CampaignJobUncheckedCreateWithoutCampaignInput> | CampaignJobCreateWithoutCampaignInput[] | CampaignJobUncheckedCreateWithoutCampaignInput[]
     connectOrCreate?: CampaignJobCreateOrConnectWithoutCampaignInput | CampaignJobCreateOrConnectWithoutCampaignInput[]
@@ -6785,6 +10905,10 @@ export namespace Prisma {
     update?: CampaignJobUpdateWithWhereUniqueWithoutCampaignInput | CampaignJobUpdateWithWhereUniqueWithoutCampaignInput[]
     updateMany?: CampaignJobUpdateManyWithWhereWithoutCampaignInput | CampaignJobUpdateManyWithWhereWithoutCampaignInput[]
     deleteMany?: CampaignJobScalarWhereInput | CampaignJobScalarWhereInput[]
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type CampaignJobUncheckedUpdateManyWithoutCampaignNestedInput = {
@@ -6857,6 +10981,20 @@ export namespace Prisma {
     connect?: CampaignWhereUniqueInput
   }
 
+  export type FailureLogCreateNestedManyWithoutJobInput = {
+    create?: XOR<FailureLogCreateWithoutJobInput, FailureLogUncheckedCreateWithoutJobInput> | FailureLogCreateWithoutJobInput[] | FailureLogUncheckedCreateWithoutJobInput[]
+    connectOrCreate?: FailureLogCreateOrConnectWithoutJobInput | FailureLogCreateOrConnectWithoutJobInput[]
+    createMany?: FailureLogCreateManyJobInputEnvelope
+    connect?: FailureLogWhereUniqueInput | FailureLogWhereUniqueInput[]
+  }
+
+  export type FailureLogUncheckedCreateNestedManyWithoutJobInput = {
+    create?: XOR<FailureLogCreateWithoutJobInput, FailureLogUncheckedCreateWithoutJobInput> | FailureLogCreateWithoutJobInput[] | FailureLogUncheckedCreateWithoutJobInput[]
+    connectOrCreate?: FailureLogCreateOrConnectWithoutJobInput | FailureLogCreateOrConnectWithoutJobInput[]
+    createMany?: FailureLogCreateManyJobInputEnvelope
+    connect?: FailureLogWhereUniqueInput | FailureLogWhereUniqueInput[]
+  }
+
   export type EnumJobStatusFieldUpdateOperationsInput = {
     set?: $Enums.JobStatus
   }
@@ -6867,6 +11005,94 @@ export namespace Prisma {
     upsert?: CampaignUpsertWithoutJobsInput
     connect?: CampaignWhereUniqueInput
     update?: XOR<XOR<CampaignUpdateToOneWithWhereWithoutJobsInput, CampaignUpdateWithoutJobsInput>, CampaignUncheckedUpdateWithoutJobsInput>
+  }
+
+  export type FailureLogUpdateManyWithoutJobNestedInput = {
+    create?: XOR<FailureLogCreateWithoutJobInput, FailureLogUncheckedCreateWithoutJobInput> | FailureLogCreateWithoutJobInput[] | FailureLogUncheckedCreateWithoutJobInput[]
+    connectOrCreate?: FailureLogCreateOrConnectWithoutJobInput | FailureLogCreateOrConnectWithoutJobInput[]
+    upsert?: FailureLogUpsertWithWhereUniqueWithoutJobInput | FailureLogUpsertWithWhereUniqueWithoutJobInput[]
+    createMany?: FailureLogCreateManyJobInputEnvelope
+    set?: FailureLogWhereUniqueInput | FailureLogWhereUniqueInput[]
+    disconnect?: FailureLogWhereUniqueInput | FailureLogWhereUniqueInput[]
+    delete?: FailureLogWhereUniqueInput | FailureLogWhereUniqueInput[]
+    connect?: FailureLogWhereUniqueInput | FailureLogWhereUniqueInput[]
+    update?: FailureLogUpdateWithWhereUniqueWithoutJobInput | FailureLogUpdateWithWhereUniqueWithoutJobInput[]
+    updateMany?: FailureLogUpdateManyWithWhereWithoutJobInput | FailureLogUpdateManyWithWhereWithoutJobInput[]
+    deleteMany?: FailureLogScalarWhereInput | FailureLogScalarWhereInput[]
+  }
+
+  export type FailureLogUncheckedUpdateManyWithoutJobNestedInput = {
+    create?: XOR<FailureLogCreateWithoutJobInput, FailureLogUncheckedCreateWithoutJobInput> | FailureLogCreateWithoutJobInput[] | FailureLogUncheckedCreateWithoutJobInput[]
+    connectOrCreate?: FailureLogCreateOrConnectWithoutJobInput | FailureLogCreateOrConnectWithoutJobInput[]
+    upsert?: FailureLogUpsertWithWhereUniqueWithoutJobInput | FailureLogUpsertWithWhereUniqueWithoutJobInput[]
+    createMany?: FailureLogCreateManyJobInputEnvelope
+    set?: FailureLogWhereUniqueInput | FailureLogWhereUniqueInput[]
+    disconnect?: FailureLogWhereUniqueInput | FailureLogWhereUniqueInput[]
+    delete?: FailureLogWhereUniqueInput | FailureLogWhereUniqueInput[]
+    connect?: FailureLogWhereUniqueInput | FailureLogWhereUniqueInput[]
+    update?: FailureLogUpdateWithWhereUniqueWithoutJobInput | FailureLogUpdateWithWhereUniqueWithoutJobInput[]
+    updateMany?: FailureLogUpdateManyWithWhereWithoutJobInput | FailureLogUpdateManyWithWhereWithoutJobInput[]
+    deleteMany?: FailureLogScalarWhereInput | FailureLogScalarWhereInput[]
+  }
+
+  export type CampaignCreateNestedManyWithoutSegmentInput = {
+    create?: XOR<CampaignCreateWithoutSegmentInput, CampaignUncheckedCreateWithoutSegmentInput> | CampaignCreateWithoutSegmentInput[] | CampaignUncheckedCreateWithoutSegmentInput[]
+    connectOrCreate?: CampaignCreateOrConnectWithoutSegmentInput | CampaignCreateOrConnectWithoutSegmentInput[]
+    createMany?: CampaignCreateManySegmentInputEnvelope
+    connect?: CampaignWhereUniqueInput | CampaignWhereUniqueInput[]
+  }
+
+  export type CampaignUncheckedCreateNestedManyWithoutSegmentInput = {
+    create?: XOR<CampaignCreateWithoutSegmentInput, CampaignUncheckedCreateWithoutSegmentInput> | CampaignCreateWithoutSegmentInput[] | CampaignUncheckedCreateWithoutSegmentInput[]
+    connectOrCreate?: CampaignCreateOrConnectWithoutSegmentInput | CampaignCreateOrConnectWithoutSegmentInput[]
+    createMany?: CampaignCreateManySegmentInputEnvelope
+    connect?: CampaignWhereUniqueInput | CampaignWhereUniqueInput[]
+  }
+
+  export type CampaignUpdateManyWithoutSegmentNestedInput = {
+    create?: XOR<CampaignCreateWithoutSegmentInput, CampaignUncheckedCreateWithoutSegmentInput> | CampaignCreateWithoutSegmentInput[] | CampaignUncheckedCreateWithoutSegmentInput[]
+    connectOrCreate?: CampaignCreateOrConnectWithoutSegmentInput | CampaignCreateOrConnectWithoutSegmentInput[]
+    upsert?: CampaignUpsertWithWhereUniqueWithoutSegmentInput | CampaignUpsertWithWhereUniqueWithoutSegmentInput[]
+    createMany?: CampaignCreateManySegmentInputEnvelope
+    set?: CampaignWhereUniqueInput | CampaignWhereUniqueInput[]
+    disconnect?: CampaignWhereUniqueInput | CampaignWhereUniqueInput[]
+    delete?: CampaignWhereUniqueInput | CampaignWhereUniqueInput[]
+    connect?: CampaignWhereUniqueInput | CampaignWhereUniqueInput[]
+    update?: CampaignUpdateWithWhereUniqueWithoutSegmentInput | CampaignUpdateWithWhereUniqueWithoutSegmentInput[]
+    updateMany?: CampaignUpdateManyWithWhereWithoutSegmentInput | CampaignUpdateManyWithWhereWithoutSegmentInput[]
+    deleteMany?: CampaignScalarWhereInput | CampaignScalarWhereInput[]
+  }
+
+  export type CampaignUncheckedUpdateManyWithoutSegmentNestedInput = {
+    create?: XOR<CampaignCreateWithoutSegmentInput, CampaignUncheckedCreateWithoutSegmentInput> | CampaignCreateWithoutSegmentInput[] | CampaignUncheckedCreateWithoutSegmentInput[]
+    connectOrCreate?: CampaignCreateOrConnectWithoutSegmentInput | CampaignCreateOrConnectWithoutSegmentInput[]
+    upsert?: CampaignUpsertWithWhereUniqueWithoutSegmentInput | CampaignUpsertWithWhereUniqueWithoutSegmentInput[]
+    createMany?: CampaignCreateManySegmentInputEnvelope
+    set?: CampaignWhereUniqueInput | CampaignWhereUniqueInput[]
+    disconnect?: CampaignWhereUniqueInput | CampaignWhereUniqueInput[]
+    delete?: CampaignWhereUniqueInput | CampaignWhereUniqueInput[]
+    connect?: CampaignWhereUniqueInput | CampaignWhereUniqueInput[]
+    update?: CampaignUpdateWithWhereUniqueWithoutSegmentInput | CampaignUpdateWithWhereUniqueWithoutSegmentInput[]
+    updateMany?: CampaignUpdateManyWithWhereWithoutSegmentInput | CampaignUpdateManyWithWhereWithoutSegmentInput[]
+    deleteMany?: CampaignScalarWhereInput | CampaignScalarWhereInput[]
+  }
+
+  export type CampaignJobCreateNestedOneWithoutFailureLogsInput = {
+    create?: XOR<CampaignJobCreateWithoutFailureLogsInput, CampaignJobUncheckedCreateWithoutFailureLogsInput>
+    connectOrCreate?: CampaignJobCreateOrConnectWithoutFailureLogsInput
+    connect?: CampaignJobWhereUniqueInput
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type CampaignJobUpdateOneRequiredWithoutFailureLogsNestedInput = {
+    create?: XOR<CampaignJobCreateWithoutFailureLogsInput, CampaignJobUncheckedCreateWithoutFailureLogsInput>
+    connectOrCreate?: CampaignJobCreateOrConnectWithoutFailureLogsInput
+    upsert?: CampaignJobUpsertWithoutFailureLogsInput
+    connect?: CampaignJobWhereUniqueInput
+    update?: XOR<XOR<CampaignJobUpdateToOneWithWhereWithoutFailureLogsInput, CampaignJobUpdateWithoutFailureLogsInput>, CampaignJobUncheckedUpdateWithoutFailureLogsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -6971,6 +11197,20 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type NestedEnumCampaignStatusWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.CampaignStatus | EnumCampaignStatusFieldRefInput<$PrismaModel>
     in?: $Enums.CampaignStatus[] | ListEnumCampaignStatusFieldRefInput<$PrismaModel>
@@ -7004,6 +11244,23 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
   export type NestedJsonFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -7096,6 +11353,19 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type FlowCreateWithoutCampaignsInput = {
     id?: string
     name: string
@@ -7119,6 +11389,27 @@ export namespace Prisma {
     create: XOR<FlowCreateWithoutCampaignsInput, FlowUncheckedCreateWithoutCampaignsInput>
   }
 
+  export type SegmentCreateWithoutCampaignsInput = {
+    id?: string
+    name: string
+    filters: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SegmentUncheckedCreateWithoutCampaignsInput = {
+    id?: string
+    name: string
+    filters: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SegmentCreateOrConnectWithoutCampaignsInput = {
+    where: SegmentWhereUniqueInput
+    create: XOR<SegmentCreateWithoutCampaignsInput, SegmentUncheckedCreateWithoutCampaignsInput>
+  }
+
   export type CampaignJobCreateWithoutCampaignInput = {
     id?: string
     userId: string
@@ -7126,6 +11417,7 @@ export namespace Prisma {
     result?: NullableJsonNullValueInput | InputJsonValue
     processedAt?: Date | string | null
     createdAt?: Date | string
+    failureLogs?: FailureLogCreateNestedManyWithoutJobInput
   }
 
   export type CampaignJobUncheckedCreateWithoutCampaignInput = {
@@ -7135,6 +11427,7 @@ export namespace Prisma {
     result?: NullableJsonNullValueInput | InputJsonValue
     processedAt?: Date | string | null
     createdAt?: Date | string
+    failureLogs?: FailureLogUncheckedCreateNestedManyWithoutJobInput
   }
 
   export type CampaignJobCreateOrConnectWithoutCampaignInput = {
@@ -7176,6 +11469,33 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type SegmentUpsertWithoutCampaignsInput = {
+    update: XOR<SegmentUpdateWithoutCampaignsInput, SegmentUncheckedUpdateWithoutCampaignsInput>
+    create: XOR<SegmentCreateWithoutCampaignsInput, SegmentUncheckedCreateWithoutCampaignsInput>
+    where?: SegmentWhereInput
+  }
+
+  export type SegmentUpdateToOneWithWhereWithoutCampaignsInput = {
+    where?: SegmentWhereInput
+    data: XOR<SegmentUpdateWithoutCampaignsInput, SegmentUncheckedUpdateWithoutCampaignsInput>
+  }
+
+  export type SegmentUpdateWithoutCampaignsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    filters?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SegmentUncheckedUpdateWithoutCampaignsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    filters?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type CampaignJobUpsertWithWhereUniqueWithoutCampaignInput = {
     where: CampaignJobWhereUniqueInput
     update: XOR<CampaignJobUpdateWithoutCampaignInput, CampaignJobUncheckedUpdateWithoutCampaignInput>
@@ -7212,6 +11532,7 @@ export namespace Prisma {
     scheduledAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    segment?: SegmentCreateNestedOneWithoutCampaignsInput
     jobs?: CampaignJobCreateNestedManyWithoutCampaignInput
   }
 
@@ -7220,6 +11541,7 @@ export namespace Prisma {
     name: string
     status?: $Enums.CampaignStatus
     scheduledAt?: Date | string | null
+    segmentId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     jobs?: CampaignJobUncheckedCreateNestedManyWithoutCampaignInput
@@ -7260,6 +11582,7 @@ export namespace Prisma {
     status?: EnumCampaignStatusFilter<"Campaign"> | $Enums.CampaignStatus
     scheduledAt?: DateTimeNullableFilter<"Campaign"> | Date | string | null
     flowId?: StringFilter<"Campaign"> | string
+    segmentId?: StringNullableFilter<"Campaign"> | string | null
     createdAt?: DateTimeFilter<"Campaign"> | Date | string
     updatedAt?: DateTimeFilter<"Campaign"> | Date | string
   }
@@ -7272,6 +11595,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     flow: FlowCreateNestedOneWithoutCampaignsInput
+    segment?: SegmentCreateNestedOneWithoutCampaignsInput
   }
 
   export type CampaignUncheckedCreateWithoutJobsInput = {
@@ -7280,6 +11604,7 @@ export namespace Prisma {
     status?: $Enums.CampaignStatus
     scheduledAt?: Date | string | null
     flowId: string
+    segmentId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -7287,6 +11612,32 @@ export namespace Prisma {
   export type CampaignCreateOrConnectWithoutJobsInput = {
     where: CampaignWhereUniqueInput
     create: XOR<CampaignCreateWithoutJobsInput, CampaignUncheckedCreateWithoutJobsInput>
+  }
+
+  export type FailureLogCreateWithoutJobInput = {
+    id?: string
+    campaignId: string
+    error: JsonNullValueInput | InputJsonValue
+    notified?: boolean
+    createdAt?: Date | string
+  }
+
+  export type FailureLogUncheckedCreateWithoutJobInput = {
+    id?: string
+    campaignId: string
+    error: JsonNullValueInput | InputJsonValue
+    notified?: boolean
+    createdAt?: Date | string
+  }
+
+  export type FailureLogCreateOrConnectWithoutJobInput = {
+    where: FailureLogWhereUniqueInput
+    create: XOR<FailureLogCreateWithoutJobInput, FailureLogUncheckedCreateWithoutJobInput>
+  }
+
+  export type FailureLogCreateManyJobInputEnvelope = {
+    data: FailureLogCreateManyJobInput | FailureLogCreateManyJobInput[]
+    skipDuplicates?: boolean
   }
 
   export type CampaignUpsertWithoutJobsInput = {
@@ -7308,6 +11659,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     flow?: FlowUpdateOneRequiredWithoutCampaignsNestedInput
+    segment?: SegmentUpdateOneWithoutCampaignsNestedInput
   }
 
   export type CampaignUncheckedUpdateWithoutJobsInput = {
@@ -7316,8 +11668,141 @@ export namespace Prisma {
     status?: EnumCampaignStatusFieldUpdateOperationsInput | $Enums.CampaignStatus
     scheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     flowId?: StringFieldUpdateOperationsInput | string
+    segmentId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FailureLogUpsertWithWhereUniqueWithoutJobInput = {
+    where: FailureLogWhereUniqueInput
+    update: XOR<FailureLogUpdateWithoutJobInput, FailureLogUncheckedUpdateWithoutJobInput>
+    create: XOR<FailureLogCreateWithoutJobInput, FailureLogUncheckedCreateWithoutJobInput>
+  }
+
+  export type FailureLogUpdateWithWhereUniqueWithoutJobInput = {
+    where: FailureLogWhereUniqueInput
+    data: XOR<FailureLogUpdateWithoutJobInput, FailureLogUncheckedUpdateWithoutJobInput>
+  }
+
+  export type FailureLogUpdateManyWithWhereWithoutJobInput = {
+    where: FailureLogScalarWhereInput
+    data: XOR<FailureLogUpdateManyMutationInput, FailureLogUncheckedUpdateManyWithoutJobInput>
+  }
+
+  export type FailureLogScalarWhereInput = {
+    AND?: FailureLogScalarWhereInput | FailureLogScalarWhereInput[]
+    OR?: FailureLogScalarWhereInput[]
+    NOT?: FailureLogScalarWhereInput | FailureLogScalarWhereInput[]
+    id?: StringFilter<"FailureLog"> | string
+    jobId?: StringFilter<"FailureLog"> | string
+    campaignId?: StringFilter<"FailureLog"> | string
+    error?: JsonFilter<"FailureLog">
+    notified?: BoolFilter<"FailureLog"> | boolean
+    createdAt?: DateTimeFilter<"FailureLog"> | Date | string
+  }
+
+  export type CampaignCreateWithoutSegmentInput = {
+    id?: string
+    name: string
+    status?: $Enums.CampaignStatus
+    scheduledAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    flow: FlowCreateNestedOneWithoutCampaignsInput
+    jobs?: CampaignJobCreateNestedManyWithoutCampaignInput
+  }
+
+  export type CampaignUncheckedCreateWithoutSegmentInput = {
+    id?: string
+    name: string
+    status?: $Enums.CampaignStatus
+    scheduledAt?: Date | string | null
+    flowId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    jobs?: CampaignJobUncheckedCreateNestedManyWithoutCampaignInput
+  }
+
+  export type CampaignCreateOrConnectWithoutSegmentInput = {
+    where: CampaignWhereUniqueInput
+    create: XOR<CampaignCreateWithoutSegmentInput, CampaignUncheckedCreateWithoutSegmentInput>
+  }
+
+  export type CampaignCreateManySegmentInputEnvelope = {
+    data: CampaignCreateManySegmentInput | CampaignCreateManySegmentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CampaignUpsertWithWhereUniqueWithoutSegmentInput = {
+    where: CampaignWhereUniqueInput
+    update: XOR<CampaignUpdateWithoutSegmentInput, CampaignUncheckedUpdateWithoutSegmentInput>
+    create: XOR<CampaignCreateWithoutSegmentInput, CampaignUncheckedCreateWithoutSegmentInput>
+  }
+
+  export type CampaignUpdateWithWhereUniqueWithoutSegmentInput = {
+    where: CampaignWhereUniqueInput
+    data: XOR<CampaignUpdateWithoutSegmentInput, CampaignUncheckedUpdateWithoutSegmentInput>
+  }
+
+  export type CampaignUpdateManyWithWhereWithoutSegmentInput = {
+    where: CampaignScalarWhereInput
+    data: XOR<CampaignUpdateManyMutationInput, CampaignUncheckedUpdateManyWithoutSegmentInput>
+  }
+
+  export type CampaignJobCreateWithoutFailureLogsInput = {
+    id?: string
+    userId: string
+    status?: $Enums.JobStatus
+    result?: NullableJsonNullValueInput | InputJsonValue
+    processedAt?: Date | string | null
+    createdAt?: Date | string
+    campaign: CampaignCreateNestedOneWithoutJobsInput
+  }
+
+  export type CampaignJobUncheckedCreateWithoutFailureLogsInput = {
+    id?: string
+    campaignId: string
+    userId: string
+    status?: $Enums.JobStatus
+    result?: NullableJsonNullValueInput | InputJsonValue
+    processedAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type CampaignJobCreateOrConnectWithoutFailureLogsInput = {
+    where: CampaignJobWhereUniqueInput
+    create: XOR<CampaignJobCreateWithoutFailureLogsInput, CampaignJobUncheckedCreateWithoutFailureLogsInput>
+  }
+
+  export type CampaignJobUpsertWithoutFailureLogsInput = {
+    update: XOR<CampaignJobUpdateWithoutFailureLogsInput, CampaignJobUncheckedUpdateWithoutFailureLogsInput>
+    create: XOR<CampaignJobCreateWithoutFailureLogsInput, CampaignJobUncheckedCreateWithoutFailureLogsInput>
+    where?: CampaignJobWhereInput
+  }
+
+  export type CampaignJobUpdateToOneWithWhereWithoutFailureLogsInput = {
+    where?: CampaignJobWhereInput
+    data: XOR<CampaignJobUpdateWithoutFailureLogsInput, CampaignJobUncheckedUpdateWithoutFailureLogsInput>
+  }
+
+  export type CampaignJobUpdateWithoutFailureLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    status?: EnumJobStatusFieldUpdateOperationsInput | $Enums.JobStatus
+    result?: NullableJsonNullValueInput | InputJsonValue
+    processedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    campaign?: CampaignUpdateOneRequiredWithoutJobsNestedInput
+  }
+
+  export type CampaignJobUncheckedUpdateWithoutFailureLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    campaignId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    status?: EnumJobStatusFieldUpdateOperationsInput | $Enums.JobStatus
+    result?: NullableJsonNullValueInput | InputJsonValue
+    processedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CampaignJobCreateManyCampaignInput = {
@@ -7336,6 +11821,7 @@ export namespace Prisma {
     result?: NullableJsonNullValueInput | InputJsonValue
     processedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    failureLogs?: FailureLogUpdateManyWithoutJobNestedInput
   }
 
   export type CampaignJobUncheckedUpdateWithoutCampaignInput = {
@@ -7345,6 +11831,7 @@ export namespace Prisma {
     result?: NullableJsonNullValueInput | InputJsonValue
     processedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    failureLogs?: FailureLogUncheckedUpdateManyWithoutJobNestedInput
   }
 
   export type CampaignJobUncheckedUpdateManyWithoutCampaignInput = {
@@ -7361,6 +11848,7 @@ export namespace Prisma {
     name: string
     status?: $Enums.CampaignStatus
     scheduledAt?: Date | string | null
+    segmentId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -7372,6 +11860,7 @@ export namespace Prisma {
     scheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    segment?: SegmentUpdateOneWithoutCampaignsNestedInput
     jobs?: CampaignJobUpdateManyWithoutCampaignNestedInput
   }
 
@@ -7380,6 +11869,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     status?: EnumCampaignStatusFieldUpdateOperationsInput | $Enums.CampaignStatus
     scheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    segmentId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     jobs?: CampaignJobUncheckedUpdateManyWithoutCampaignNestedInput
@@ -7390,6 +11880,81 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     status?: EnumCampaignStatusFieldUpdateOperationsInput | $Enums.CampaignStatus
     scheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    segmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FailureLogCreateManyJobInput = {
+    id?: string
+    campaignId: string
+    error: JsonNullValueInput | InputJsonValue
+    notified?: boolean
+    createdAt?: Date | string
+  }
+
+  export type FailureLogUpdateWithoutJobInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    campaignId?: StringFieldUpdateOperationsInput | string
+    error?: JsonNullValueInput | InputJsonValue
+    notified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FailureLogUncheckedUpdateWithoutJobInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    campaignId?: StringFieldUpdateOperationsInput | string
+    error?: JsonNullValueInput | InputJsonValue
+    notified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FailureLogUncheckedUpdateManyWithoutJobInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    campaignId?: StringFieldUpdateOperationsInput | string
+    error?: JsonNullValueInput | InputJsonValue
+    notified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CampaignCreateManySegmentInput = {
+    id?: string
+    name: string
+    status?: $Enums.CampaignStatus
+    scheduledAt?: Date | string | null
+    flowId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CampaignUpdateWithoutSegmentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: EnumCampaignStatusFieldUpdateOperationsInput | $Enums.CampaignStatus
+    scheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    flow?: FlowUpdateOneRequiredWithoutCampaignsNestedInput
+    jobs?: CampaignJobUpdateManyWithoutCampaignNestedInput
+  }
+
+  export type CampaignUncheckedUpdateWithoutSegmentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: EnumCampaignStatusFieldUpdateOperationsInput | $Enums.CampaignStatus
+    scheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    flowId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    jobs?: CampaignJobUncheckedUpdateManyWithoutCampaignNestedInput
+  }
+
+  export type CampaignUncheckedUpdateManyWithoutSegmentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: EnumCampaignStatusFieldUpdateOperationsInput | $Enums.CampaignStatus
+    scheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    flowId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

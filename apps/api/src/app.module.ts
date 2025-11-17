@@ -10,6 +10,8 @@ import { FlowsModule } from './flows/flows.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { PrismaModule } from './prisma/prisma.module';
+import { SegmentsModule } from './segments/segments.module';
+import { EventsModule } from './events/events.module';
 
 @Module({
   imports: [
@@ -26,6 +28,8 @@ import { PrismaModule } from './prisma/prisma.module';
     FlowsModule,
     CampaignsModule,
     JobsModule,
+    SegmentsModule,
+    EventsModule,
   ],
   controllers: [AppController],
   providers: [

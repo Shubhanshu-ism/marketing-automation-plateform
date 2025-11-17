@@ -108,6 +108,7 @@ exports.Prisma.CampaignScalarFieldEnum = {
   status: 'status',
   scheduledAt: 'scheduledAt',
   flowId: 'flowId',
+  segmentId: 'segmentId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -128,6 +129,32 @@ exports.Prisma.CampaignJobScalarFieldEnum = {
   status: 'status',
   result: 'result',
   processedAt: 'processedAt',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.SegmentScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  filters: 'filters',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.EventScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  type: 'type',
+  metadata: 'metadata',
+  campaignId: 'campaignId',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.FailureLogScalarFieldEnum = {
+  id: 'id',
+  jobId: 'jobId',
+  campaignId: 'campaignId',
+  error: 'error',
+  notified: 'notified',
   createdAt: 'createdAt'
 };
 
@@ -185,7 +212,10 @@ exports.Prisma.ModelName = {
   User: 'User',
   Campaign: 'Campaign',
   Flow: 'Flow',
-  CampaignJob: 'CampaignJob'
+  CampaignJob: 'CampaignJob',
+  Segment: 'Segment',
+  Event: 'Event',
+  FailureLog: 'FailureLog'
 };
 /**
  * Create the Client
@@ -216,7 +246,7 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../../.env",
+    "rootEnvPath": null,
     "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../../../prisma",
@@ -226,7 +256,6 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -235,13 +264,13 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in ithe docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/prisma/generated\" // Output to a specific folder within src\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\n// Enums\nenum Role {\n  ADMIN\n  MARKETER\n  VIEWER\n}\n\nenum CampaignStatus {\n  DRAFT\n  SCHEDULED\n  ACTIVE\n  PAUSED\n  COMPLETED\n}\n\nenum JobStatus {\n  PENDING\n  PROCESSING\n  SENT\n  FAILED\n}\n\n// Models\nmodel User {\n  id        String   @id @default(uuid())\n  email     String   @unique\n  password  String\n  role      Role     @default(VIEWER)\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nmodel Campaign {\n  id          String         @id @default(uuid())\n  name        String\n  status      CampaignStatus @default(DRAFT)\n  scheduledAt DateTime?\n  flowId      String\n  flow        Flow           @relation(fields: [flowId], references: [id])\n  jobs        CampaignJob[]\n  createdAt   DateTime       @default(now())\n  updatedAt   DateTime       @updatedAt\n}\n\nmodel Flow {\n  id        String     @id @default(uuid())\n  name      String\n  steps     Json // JSON array of step configurations\n  version   Int        @default(1)\n  campaigns Campaign[]\n  createdAt DateTime   @default(now())\n  updatedAt DateTime   @updatedAt\n}\n\nmodel CampaignJob {\n  id          String    @id @default(uuid())\n  campaignId  String\n  campaign    Campaign  @relation(fields: [campaignId], references: [id])\n  userId      String // The target user for this job\n  status      JobStatus @default(PENDING)\n  result      Json? // Stores success or failure details\n  processedAt DateTime?\n  createdAt   DateTime  @default(now())\n}\n",
-  "inlineSchemaHash": "775ffd8b22cda66cb812963f55867ee3f45eb561a1d34e54b3f13655d4f4f8a0",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in ithe docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/prisma/generated\" // Output to a specific folder within src\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\n// Enums\nenum Role {\n  ADMIN\n  MARKETER\n  VIEWER\n}\n\nenum CampaignStatus {\n  DRAFT\n  SCHEDULED\n  ACTIVE\n  PAUSED\n  COMPLETED\n}\n\nenum JobStatus {\n  PENDING\n  PROCESSING\n  SENT\n  FAILED\n}\n\n// Models\nmodel User {\n  id        String   @id @default(uuid())\n  email     String   @unique\n  password  String\n  role      Role     @default(VIEWER)\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nmodel Campaign {\n  id          String         @id @default(uuid())\n  name        String\n  status      CampaignStatus @default(DRAFT)\n  scheduledAt DateTime?\n  flowId      String\n  flow        Flow           @relation(fields: [flowId], references: [id])\n  segmentId   String?\n  segment     Segment?       @relation(fields: [segmentId], references: [id])\n  jobs        CampaignJob[]\n  createdAt   DateTime       @default(now())\n  updatedAt   DateTime       @updatedAt\n}\n\nmodel Flow {\n  id        String     @id @default(uuid())\n  name      String\n  steps     Json // JSON array of step configurations\n  version   Int        @default(1)\n  campaigns Campaign[]\n  createdAt DateTime   @default(now())\n  updatedAt DateTime   @updatedAt\n}\n\nmodel CampaignJob {\n  id          String       @id @default(uuid())\n  campaignId  String\n  campaign    Campaign     @relation(fields: [campaignId], references: [id])\n  userId      String // The target user for this job\n  status      JobStatus    @default(PENDING)\n  result      Json? // Stores success or failure details\n  processedAt DateTime?\n  createdAt   DateTime     @default(now())\n  failureLogs FailureLog[]\n}\n\nmodel Segment {\n  id        String     @id @default(uuid())\n  name      String\n  filters   Json // e.g., {\"location\": \"NYC\", \"signupDate\": \">2024-01-01\"}\n  campaigns Campaign[]\n  createdAt DateTime   @default(now())\n  updatedAt DateTime   @updatedAt\n}\n\nmodel Event {\n  id         String   @id @default(uuid())\n  userId     String\n  type       String // \"email_opened\", \"link_clicked\", \"form_submitted\"\n  metadata   Json\n  campaignId String?\n  createdAt  DateTime @default(now())\n}\n\nmodel FailureLog {\n  id         String      @id @default(uuid())\n  jobId      String\n  job        CampaignJob @relation(fields: [jobId], references: [id])\n  campaignId String\n  error      Json\n  notified   Boolean     @default(false)\n  createdAt  DateTime    @default(now())\n}\n",
+  "inlineSchemaHash": "7f23db2a080deae909c9bee77552859cf099b323e37b89b05faccdb0d25a6622",
   "copyEngine": true
 }
 config.dirname = '/'
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role\",\"kind\":\"enum\",\"type\":\"Role\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Campaign\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"CampaignStatus\"},{\"name\":\"scheduledAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"flowId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"flow\",\"kind\":\"object\",\"type\":\"Flow\",\"relationName\":\"CampaignToFlow\"},{\"name\":\"jobs\",\"kind\":\"object\",\"type\":\"CampaignJob\",\"relationName\":\"CampaignToCampaignJob\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Flow\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"steps\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"version\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"campaigns\",\"kind\":\"object\",\"type\":\"Campaign\",\"relationName\":\"CampaignToFlow\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"CampaignJob\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"campaignId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"campaign\",\"kind\":\"object\",\"type\":\"Campaign\",\"relationName\":\"CampaignToCampaignJob\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"JobStatus\"},{\"name\":\"result\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"processedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role\",\"kind\":\"enum\",\"type\":\"Role\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Campaign\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"CampaignStatus\"},{\"name\":\"scheduledAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"flowId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"flow\",\"kind\":\"object\",\"type\":\"Flow\",\"relationName\":\"CampaignToFlow\"},{\"name\":\"segmentId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"segment\",\"kind\":\"object\",\"type\":\"Segment\",\"relationName\":\"CampaignToSegment\"},{\"name\":\"jobs\",\"kind\":\"object\",\"type\":\"CampaignJob\",\"relationName\":\"CampaignToCampaignJob\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Flow\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"steps\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"version\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"campaigns\",\"kind\":\"object\",\"type\":\"Campaign\",\"relationName\":\"CampaignToFlow\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"CampaignJob\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"campaignId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"campaign\",\"kind\":\"object\",\"type\":\"Campaign\",\"relationName\":\"CampaignToCampaignJob\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"JobStatus\"},{\"name\":\"result\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"processedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"failureLogs\",\"kind\":\"object\",\"type\":\"FailureLog\",\"relationName\":\"CampaignJobToFailureLog\"}],\"dbName\":null},\"Segment\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"filters\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"campaigns\",\"kind\":\"object\",\"type\":\"Campaign\",\"relationName\":\"CampaignToSegment\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Event\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"metadata\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"campaignId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"FailureLog\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"jobId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"job\",\"kind\":\"object\",\"type\":\"CampaignJob\",\"relationName\":\"CampaignJobToFailureLog\"},{\"name\":\"campaignId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"error\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"notified\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = {
   getRuntime: async () => require('./query_engine_bg.js'),

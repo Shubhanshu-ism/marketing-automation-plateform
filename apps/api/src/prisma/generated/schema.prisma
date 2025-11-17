@@ -50,6 +50,8 @@ model Campaign {
   scheduledAt DateTime?
   flowId      String
   flow        Flow           @relation(fields: [flowId], references: [id])
+  segmentId   String?
+  segment     Segment?       @relation(fields: [segmentId], references: [id])
   jobs        CampaignJob[]
   createdAt   DateTime       @default(now())
   updatedAt   DateTime       @updatedAt
@@ -66,12 +68,41 @@ model Flow {
 }
 
 model CampaignJob {
-  id          String    @id @default(uuid())
+  id          String       @id @default(uuid())
   campaignId  String
-  campaign    Campaign  @relation(fields: [campaignId], references: [id])
+  campaign    Campaign     @relation(fields: [campaignId], references: [id])
   userId      String // The target user for this job
-  status      JobStatus @default(PENDING)
+  status      JobStatus    @default(PENDING)
   result      Json? // Stores success or failure details
   processedAt DateTime?
-  createdAt   DateTime  @default(now())
+  createdAt   DateTime     @default(now())
+  failureLogs FailureLog[]
+}
+
+model Segment {
+  id        String     @id @default(uuid())
+  name      String
+  filters   Json // e.g., {"location": "NYC", "signupDate": ">2024-01-01"}
+  campaigns Campaign[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model Event {
+  id         String   @id @default(uuid())
+  userId     String
+  type       String // "email_opened", "link_clicked", "form_submitted"
+  metadata   Json
+  campaignId String?
+  createdAt  DateTime @default(now())
+}
+
+model FailureLog {
+  id         String      @id @default(uuid())
+  jobId      String
+  job        CampaignJob @relation(fields: [jobId], references: [id])
+  campaignId String
+  error      Json
+  notified   Boolean     @default(false)
+  createdAt  DateTime    @default(now())
 }

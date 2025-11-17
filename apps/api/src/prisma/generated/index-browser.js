@@ -136,6 +136,7 @@ exports.Prisma.CampaignScalarFieldEnum = {
   status: 'status',
   scheduledAt: 'scheduledAt',
   flowId: 'flowId',
+  segmentId: 'segmentId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -156,6 +157,32 @@ exports.Prisma.CampaignJobScalarFieldEnum = {
   status: 'status',
   result: 'result',
   processedAt: 'processedAt',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.SegmentScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  filters: 'filters',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.EventScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  type: 'type',
+  metadata: 'metadata',
+  campaignId: 'campaignId',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.FailureLogScalarFieldEnum = {
+  id: 'id',
+  jobId: 'jobId',
+  campaignId: 'campaignId',
+  error: 'error',
+  notified: 'notified',
   createdAt: 'createdAt'
 };
 
@@ -213,7 +240,10 @@ exports.Prisma.ModelName = {
   User: 'User',
   Campaign: 'Campaign',
   Flow: 'Flow',
-  CampaignJob: 'CampaignJob'
+  CampaignJob: 'CampaignJob',
+  Segment: 'Segment',
+  Event: 'Event',
+  FailureLog: 'FailureLog'
 };
 
 /**
