@@ -1,0 +1,77 @@
+// This is your Prisma schema file,
+// learn more about it in ithe docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/prisma/generated" // Output to a specific folder within src
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Enums
+enum Role {
+  ADMIN
+  MARKETER
+  VIEWER
+}
+
+enum CampaignStatus {
+  DRAFT
+  SCHEDULED
+  ACTIVE
+  PAUSED
+  COMPLETED
+}
+
+enum JobStatus {
+  PENDING
+  PROCESSING
+  SENT
+  FAILED
+}
+
+// Models
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  role      Role     @default(VIEWER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Campaign {
+  id           String         @id @default(uuid())
+  name         String
+  status       CampaignStatus @default(DRAFT)
+  scheduledAt  DateTime?
+  flowId       String
+  flow         Flow           @relation(fields: [flowId], references: [id])
+  jobs         CampaignJob[]
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+}
+
+model Flow {
+  id        String     @id @default(uuid())
+  name      String
+  steps     Json       // JSON array of step configurations
+  version   Int        @default(1)
+  campaigns Campaign[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model CampaignJob {
+  id         String    @id @default(uuid())
+  campaignId String
+  campaign   Campaign  @relation(fields: [campaignId], references: [id])
+  userId     String    // The target user for this job
+  status     JobStatus @default(PENDING)
+  result     Json?     // Stores success or failure details
+  processedAt DateTime?
+  createdAt  DateTime  @default(now())
+}
