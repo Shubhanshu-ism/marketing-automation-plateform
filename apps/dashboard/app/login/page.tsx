@@ -11,11 +11,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
-import { login } from "@/lib/api";
-import { useRouter } from "next/navigation";
+import { login as apiLogin } from "@/lib/api";
+import { useAuth } from "@/context/AuthContext";
 
 export default function LoginPage() {
-  const router = useRouter();
+  const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -24,12 +24,8 @@ export default function LoginPage() {
     e.preventDefault();
     setError(null);
     try {
-      const data = await login({ email, password });
-      // For now, just log the token and redirect.
-      // Later, this will be handled by a state management solution.
-      console.log("Login successful, token:", data.access_token);
-      localStorage.setItem('auth_token', data.access_token);
-      router.push("/dashboard");
+      const data = await apiLogin({ email, password });
+      login(data.access_token);
     } catch (err) {
       setError(err.message);
     }
