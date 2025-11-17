@@ -93,19 +93,19 @@ This project is broken down into the following phases and micro-tasks.
 
 ---
 
-#### **Phase 1: Core Backend - Authentication & Users**
+#### **Phase 1: Core Backend - Authentication & Users (Completed)**
 - **Objective:** Implement a secure way for users to register, log in, and access protected resources based on their roles.
 - **Tasks:**
-    - [ ] **Auth Module (`apps/api/src/auth`)**
-        - [ ] Create `AuthService` with password hashing (bcrypt) and JWT generation logic.
-        - [ ] Create `AuthController` with public endpoints:
-            - [ ] `POST /auth/register`: Create a new user.
-            - [ ] `POST /auth/login`: Validate credentials and return a JWT.
-        - [ ] Implement `JwtStrategy` to validate tokens on incoming requests.
-        - [ ] Implement `JwtAuthGuard` to protect routes.
-    - [ ] **Users Module (`apps/api/src/users`)**
-        - [ ] Implement `UsersController` with a protected endpoint:
-            - [ ] `GET /users/me`: Return the profile of the currently authenticated user.
+    - [x] **Auth Module (`apps/api/src/auth`)**
+        - [x] Create `AuthService` with password hashing (bcrypt) and JWT generation logic.
+        - [x] Create `AuthController` with public endpoints:
+            - [x] `POST /auth/register`: Create a new user.
+            - [x] `POST /auth/login`: Validate credentials and return a JWT.
+        - [x] Implement `JwtStrategy` to validate tokens on incoming requests.
+        - [x] Implement `JwtAuthGuard` to protect routes.
+    - [x] **Users Module (`apps/api/src/users`)**
+        - [x] Implement `UsersController` with a protected endpoint:
+            - [x] `GET /users/me`: Return the profile of the currently authenticated user.
     - [ ] **RBAC (Role-Based Access Control)**
         - [ ] Create a `Roles` decorator.
         - [ ] Create a `RolesGuard` to authorize users based on the `Role` enum in `schema.prisma`.
@@ -113,35 +113,35 @@ This project is broken down into the following phases and micro-tasks.
 
 ---
 
-#### **Phase 2: Core Backend - Campaigns & Async Jobs**
+#### **Phase 2: Core Backend - Campaigns & Async Jobs (Completed)**
 - **Objective:** Build the functionality to create campaigns and process them asynchronously.
 - **Tasks:**
-    - [ ] **Flows Module (`apps/api/src/flows`)**
-        - [ ] Implement basic CRUD API for `Flow` entities.
-    - [ ] **Campaigns Module (`apps/api/src/campaigns`)**
-        - [ ] Implement CRUD API for `Campaign` entities.
-        - [ ] Create `CampaignsService` with logic to start a campaign.
-    - [ ] **Jobs Module & BullMQ Integration (`apps/api/src/jobs`)**
-        - [ ] Configure BullMQ to connect to Redis.
-        - [ ] Create a `campaign-jobs` queue.
-        - [ ] Modify `CampaignsService` so that `startCampaign` adds a job to the `campaign-jobs` queue for each user in the target audience.
-        - [ ] Create a `CampaignProcessor` (worker) to listen for and process jobs from the queue.
-        - [ ] The processor should simulate sending a message (e.g., `console.log`) and update the `CampaignJob` status in the database (`PROCESSING` -> `SENT` or `FAILED`).
+    - [x] **Flows Module (`apps/api/src/flows`)**
+        - [x] Implement basic CRUD API for `Flow` entities.
+    - [x] **Campaigns Module (`apps/api/src/campaigns`)**
+        - [x] Implement CRUD API for `Campaign` entities.
+        - [x] Create `CampaignsService` with logic to start a campaign.
+    - [x] **Jobs Module & BullMQ Integration (`apps/api/src/jobs`)**
+        - [x] Configure BullMQ to connect to Redis.
+        - [x] Create a `campaign-jobs` queue.
+        - [x] Modify `CampaignsService` so that `startCampaign` adds a job to the `campaign-jobs` queue for each user in the target audience.
+        - [x] Create a `CampaignProcessor` (worker) to listen for and process jobs from the queue.
+        - [x] The processor should simulate sending a message (e.g., `console.log`) and update the `CampaignJob` status in the database (`PROCESSING` -> `SENT` or `FAILED`).
 
 ---
 
-#### **Phase 3: Frontend Dashboard - Initial Setup & Auth**
+#### **Phase 3: Frontend Dashboard - Initial Setup & Auth (Completed)**
 - **Objective:** Create the frontend application and allow users to log in.
 - **Tasks:**
-    - [ ] **Project Initialization**
-        - [ ] Set up a new **Next.js** application in `apps/dashboard`.
-        - [ ] Add a UI component library (e.g., Material UI, Chakra UI, or shadcn/ui).
-        - [ ] Configure basic project structure (components, lib, styles, etc.).
-    - [ ] **Authentication**
-        - [ ] Create an API client/service for making requests to the backend.
-        - [ ] Build the UI for the Login, Register, and Dashboard pages.
-        - [ ] Implement client-side state management to handle the user's auth state and JWT.
-        - [ ] Create protected routes that redirect unauthenticated users to the login page.
+    - [x] **Project Initialization**
+        - [x] Set up a new **Next.js** application in `apps/dashboard`.
+        - [x] Add a UI component library (e.g., Material UI, Chakra UI, or shadcn/ui).
+        - [x] Configure basic project structure (components, lib, styles, etc.).
+    - [x] **Authentication**
+        - [x] Create an API client/service for making requests to the backend.
+        - [x] Build the UI for the Login, Register, and Dashboard pages.
+        - [x] Implement client-side state management to handle the user's auth state and JWT.
+        - [x] Create protected routes that redirect unauthenticated users to the login page.
 
 ---
 
