@@ -12,6 +12,7 @@ import { UsersModule } from './users/users.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { SegmentsModule } from './segments/segments.module';
 import { EventsModule } from './events/events.module';
+import { N8nModule } from './n8n/n8n.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { EventsModule } from './events/events.module';
     JobsModule,
     SegmentsModule,
     EventsModule,
+    N8nModule,
   ],
   controllers: [AppController],
   providers: [

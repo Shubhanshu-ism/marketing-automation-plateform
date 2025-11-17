@@ -1,6 +1,7 @@
 import { Processor, WorkerHost } from '@nestjs/bullmq';
 import { Job } from 'bullmq';
 import { PrismaService } from '../prisma/prisma.service';
+import { N8nService } from '../n8n/n8n.service';
 import { JobStatus } from '../prisma/generated';
 import { Logger } from '@nestjs/common';
 
@@ -8,7 +9,10 @@ import { Logger } from '@nestjs/common';
 export class JobsProcessor extends WorkerHost {
   private readonly logger = new Logger(JobsProcessor.name);
 
-  constructor(private readonly prisma: PrismaService) {
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly n8nService: N8nService,
+  ) {
     super();
   }
 
@@ -39,11 +43,21 @@ export class JobsProcessor extends WorkerHost {
 
     } catch (error) {
       this.logger.error(`Job ${job.id} failed`, error.stack);
+      
       // 4. Update job status to FAILED on error
       await this.prisma.campaignJob.update({
         where: { id: job.id },
         data: { status: JobStatus.FAILED, result: { success: false, error: error.message } },
       });
+
+      // 5. Trigger n8n job failure alert workflow
+      await this.n8nService.triggerJobFailureAlert({
+        jobId: job.id,
+        campaignId,
+        userId,
+        error: error.message,
+      });
+
       throw error; // Re-throw error to let BullMQ handle retry logic if configured
     }
   }

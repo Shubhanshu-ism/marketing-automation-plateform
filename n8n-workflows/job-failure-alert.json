@@ -1,0 +1,150 @@
+{
+  "name": "Job Failure Alert",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "job-failure",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-node",
+      "name": "Webhook - Job Failure",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "webhookId": "job-failure"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "jobId",
+              "value": "={{ $json.body.jobId }}"
+            },
+            {
+              "name": "campaignId",
+              "value": "={{ $json.body.campaignId }}"
+            },
+            {
+              "name": "userId",
+              "value": "={{ $json.body.userId }}"
+            },
+            {
+              "name": "error",
+              "value": "={{ $json.body.error }}"
+            },
+            {
+              "name": "timestamp",
+              "value": "={{ $now.toISO() }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "extract-data",
+      "name": "Extract Failure Data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:3000/api/failure-logs",
+        "authentication": "none",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { \"jobId\": $json.jobId, \"campaignId\": $json.campaignId, \"userId\": $json.userId, \"error\": $json.error, \"timestamp\": $json.timestamp } }}",
+        "options": {
+          "timeout": 5000
+        }
+      },
+      "id": "log-failure",
+      "name": "Log Failure to Database",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [650, 200]
+    },
+    {
+      "parameters": {
+        "message": "=🚨 Campaign Job Failed!\n\nJob ID: {{ $json.jobId }}\nCampaign ID: {{ $json.campaignId }}\nUser ID: {{ $json.userId }}\nError: {{ $json.error }}\nTimestamp: {{ $json.timestamp }}",
+        "options": {}
+      },
+      "id": "log-alert",
+      "name": "Console Log Alert",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [650, 400]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"success\": true, \"message\": \"Failure alert processed\" } }}"
+      },
+      "id": "respond",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [850, 300]
+    }
+  ],
+  "connections": {
+    "Webhook - Job Failure": {
+      "main": [
+        [
+          {
+            "node": "Extract Failure Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Failure Data": {
+      "main": [
+        [
+          {
+            "node": "Log Failure to Database",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Console Log Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Failure to Database": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Console Log Alert": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1",
+  "tags": []
+}
