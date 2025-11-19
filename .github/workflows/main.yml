@@ -1,0 +1,80 @@
+# .github/workflows/main.yml
+
+name: Main CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: true
+
+      - name: Run linter
+        run: pnpm --filter api --filter dashboard lint
+
+      # - name: Run tests # Uncomment when tests are added
+      #   run: pnpm --filter api --filter dashboard test
+
+      - name: Build applications
+        run: pnpm --filter api --filter dashboard build
+
+  deploy:
+    name: Deploy to AWS
+    needs: build-and-test
+    if: github.ref == 'refs/heads/main' # Only deploy on push to main
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Log in to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build, tag, and push API image to Amazon ECR
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: marketing-api
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f apps/api/Dockerfile .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+
+      - name: Update App Runner service for API
+        uses: aws-actions/aws-apprunner-update-service@v1
+        with:
+          service-arn: ${{ secrets.API_APPRUNNER_SERVICE_ARN }}
+          image-identifier: ${{ steps.build-and-push-api.outputs.image }}
+
+      # Repeat the build and push steps for the dashboard
+      # - name: Build, tag, and push Dashboard image to Amazon ECR
+      # ...
+      # - name: Update App Runner service for Dashboard
+      # ...

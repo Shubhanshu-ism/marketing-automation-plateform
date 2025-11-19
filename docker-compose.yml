@@ -36,6 +36,12 @@ services:
       - N8N_TELEMETRY_ENABLED=false
     volumes:
       - n8n_data:/home/node/.n8n
+  
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    ports:
+      - "16686:16686" # Jaeger UI
+      - "4318:4318"   # OTLP HTTP receiver
 
 volumes:
   postgres_data:

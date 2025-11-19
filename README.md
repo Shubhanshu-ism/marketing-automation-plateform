@@ -14,7 +14,43 @@ The primary goal is to build a scalable, observable, and cloud-deployable system
 
 ---
 
-### **2. Getting Started**
+### **2. Architecture**
+
+```mermaid
+graph TD
+    subgraph User Interface
+        A[Next.js Dashboard]
+    end
+
+    subgraph Backend Services
+        B[NestJS API]
+        C[BullMQ Worker]
+    end
+
+    subgraph Data Stores
+        D[PostgreSQL Database]
+        E[Redis Cache]
+    end
+
+    subgraph Third-Party Services
+        F[n8n Workflow Engine]
+        G[Jaeger for Tracing]
+    end
+
+    A -- "REST API Calls" --> B
+    B -- "Enqueues Jobs" --> E
+    C -- "Processes Jobs" --> E
+    B -- "Reads/Writes Data" --> D
+    C -- "Reads/Writes Data" --> D
+    B -- "Triggers Webhooks" --> F
+    F -- "Calls API Endpoints" --> B
+    B -- "Sends Traces" --> G
+    C -- "Sends Traces" --> G
+```
+
+---
+
+### **3. Getting Started**
 
 This guide will walk you through setting up the project for local development.
 
@@ -22,6 +58,7 @@ This guide will walk you through setting up the project for local development.
 - **Node.js:** v20 or higher
 - **pnpm:** A fast, disk space-efficient package manager.
 - **Docker:** For running services like PostgreSQL and Redis in isolated containers.
+- **k6:** For running load tests. [Installation Guide](https://k6.io/docs/getting-started/installation/)
 
 **Installation Steps:**
 
@@ -49,7 +86,7 @@ This guide will walk you through setting up the project for local development.
     Now, open both `.env` files and fill in the required values (e.g., database credentials, JWT secret).
 
 4.  **Start Infrastructure Services:**
-    This command starts the PostgreSQL and Redis containers using Docker Compose.
+    This command starts the PostgreSQL, Redis, n8n, and Jaeger containers using Docker Compose.
     ```bash
     docker-compose up -d
     ```
@@ -72,35 +109,24 @@ This guide will walk you through setting up the project for local development.
 
     - The API will be available at `http://localhost:3001`.
     - The dashboard will be available at `http://localhost:3000`.
+    - The Jaeger UI will be available at `http://localhost:16686`.
 
 ---
 
-### **3. Project Structure**
+### **4. Project Structure**
 
 This project is a **monorepo** managed by `pnpm` workspaces. This structure helps organize code and share configurations between different parts of the application.
 
 - **`apps/api`**: The backend **NestJS** application.
-  - `src/`: Contains all the source code for the API.
-    - `auth/`: Authentication and JWT logic.
-    - `users/`: User management.
-    - `campaigns/`, `flows/`, `segments/`, `events/`: Core business logic modules.
-    - `jobs/`: Background job processors (BullMQ workers).
-    - `prisma/`: Prisma schema and generated client.
-  - `prisma/migrations`: Database migration files.
-
 - **`apps/dashboard`**: The frontend **Next.js** application.
-  - `app/`: The main application router and pages.
-  - `components/`: Reusable React components.
-  - `lib/`: Utility functions and API client.
-  - `context/`: React context for state management (e.g., Auth).
-
-- **`packages/`**: Shared libraries and types between applications (e.g., DTOs).
-
-- **`n8n-workflows/`**: Exported JSON files for the n8n automation workflows.
+- **`packages/`**: Shared libraries and types.
+- **`n8n-workflows/`**: Exported JSON files for n8n workflows.
+- **`terraform/`**: Infrastructure-as-Code scripts for provisioning AWS resources.
+- **`k6/`**: Load testing scripts.
 
 ---
 
-### **4. Project Roadmap & Tasks**
+### **5. Project Roadmap & Tasks**
 
 This project is broken down into the following phases and micro-tasks.
 
@@ -115,77 +141,46 @@ This project is broken down into the following phases and micro-tasks.
 ---
 
 #### **Phase 1: Core Backend - Authentication, Users & RBAC (Completed) ✅**
-- **Objective:** Implement a secure way for users to register, log in, and access protected resources based on their roles.
-- **Tasks:**
-    - [x] **Auth Module (`apps/api/src/auth`)**
-    - [x] **Users Module (`apps/api/src/users`)**
-    - [x] **RBAC (Role-Based Access Control)**
-    - [x] **Security Features** (Rate Limiting, Validation, CORS)
+- [x] **Auth Module (`apps/api/src/auth`)**
+- [x] **Users Module (`apps/api/src/users`)**
+- [x] **RBAC (Role-Based Access Control)**
+- [x] **Security Features** (Rate Limiting, Validation, CORS)
 
 ---
 
 #### **Phase 2: Core Backend - Campaigns, Flows, Segments, Events & Async Jobs (Completed) ✅**
-- **Objective:** Build the functionality to create campaigns, target audiences, track events, and process them asynchronously.
-- **Tasks:**
-    - [x] **Flows Module (`apps/api/src/flows`)**
-    - [x] **Campaigns Module (`apps/api/src/campaigns`)**
-    - [x] **Jobs Module & BullMQ Integration (`apps/api/src/jobs`)**
-    - [x] **Segments Module (`apps/api/src/segments`)**
-    - [x] **Events Module (`apps/api/src/events`)**
-    - [x] **FailureLog Model**
+- [x] **Flows Module (`apps/api/src/flows`)**
+- [x] **Campaigns Module (`apps/api/src/campaigns`)**
+- [x] **Jobs Module & BullMQ Integration (`apps/api/src/jobs`)**
+- [x] **Segments Module (`apps/api/src/segments`)**
+- [x] **Events Module (`apps/api/src/events`)**
+- [x] **FailureLog Model**
 
 ---
 
 #### **Phase 3: Frontend Dashboard - Initial Setup & Auth (Completed) ✅**
-- **Objective:** Create the frontend application and allow users to log in.
-- **Tasks:**
-    - [x] **Project Initialization** (Next.js, shadcn/ui)
-    - [x] **Authentication** (Login, Register, Protected Routes)
+- [x] **Project Initialization** (Next.js, shadcn/ui)
+- [x] **Authentication** (Login, Register, Protected Routes)
 
 ---
 
 #### **Phase 4: Frontend Dashboard - Campaign & Flow Management (Completed) ✅**
-- **Objective:** Allow authenticated users to view and create campaigns and flows.
-- **Tasks:**
-    - [x] **Flow Management**
-        - [x] Create a page to list and create simple flows.
-        - [x] Connect the UI to the backend `Flows` API.
-    - [x] **Campaign Management**
-        - [x] Create a page to list all campaigns.
-        - [x] Create a form to create a new campaign and schedule it.
+- [x] **Flow Management**
+- [x] **Campaign Management**
 
 ---
 
 #### **Phase 5: n8n Integration for Advanced Workflows (Completed) ✅**
-- **Objective:** Offload complex, multi-step processes to a dedicated workflow engine.
-- **Tasks:**
-    - [x] Add n8n to the `docker-compose.yml` file.
-    - [x] **N8N Service Module (`apps/api/src/n8n`)**
-    - [x] **Workflow 1: Job Failure Alert**
-        - [x] `CampaignProcessor` calls n8n webhook on job failure.
-        - [x] n8n workflow logs failure and sends mock notification.
-        - [x] Workflow JSON exported to `n8n-workflows/job-failure-alert.json`.
-    - [x] **Workflow 2: Daily Scheduled Campaigns**
-        - [x] n8n workflow with Cron trigger fetches and starts scheduled campaigns.
-        - [x] Workflow JSON exported to `n8n-workflows/scheduled-campaigns.json`.
-    - [x] **Documentation**
-        - [x] `n8n-workflows/README.md` with import/setup instructions.
+- [x] **N8N Service Module (`apps/api/src/n8n`)**
+- [x] **Workflow 1: Job Failure Alert**
+- [x] **Workflow 2: Daily Scheduled Campaigns**
+- [x] **Documentation**
 
 ---
 
-#### **Phase 6: Advanced Features, Deployment & Observability (In Progress) 🚧**
-- **Objective:** Prepare the application for a production-like environment.
-- **Tasks:**
-    - [ ] **Infrastructure-as-Code (IaC)**
-        - [ ] Write Terraform scripts to provision AWS resources (e.g., ECS, RDS, ElastiCache).
-    - [ ] **CI/CD**
-        - [ ] Create a GitHub Actions workflow to automatically build, test, and deploy the API and dashboard.
-    - [ ] **Observability**
-        - [ ] Integrate OpenTelemetry for distributed tracing across the NestJS API and workers.
-        - [ ] Implement structured logging with correlation IDs.
-    - [ ] **Testing**
-        - [ ] Write unit and integration tests for critical backend services.
-        - [ ] Write load-testing scripts using k6 or Artillery.
-    - [ ] **Documentation**
-        - [ ] Create a `postmortem.md` with analysis and limitations.
-        - [ ] Generate and add an architecture diagram to the README.
+#### **Phase 6: Advanced Features, Deployment & Observability (Completed) ✅**
+- [x] **Infrastructure-as-Code (IaC)**
+- [x] **CI/CD**
+- [x] **Observability**
+- [x] **Testing**
+- [x] **Documentation**
