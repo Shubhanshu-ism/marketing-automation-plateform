@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -10,8 +10,13 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get('/health')
-  getHealth(): string {
+  /**
+   * Provides a health check endpoint for monitoring and uptime checks.
+   * It returns the status of the API and its database connection.
+   */
+  @Get('health')
+  @HttpCode(HttpStatus.OK)
+  async getHealth(): Promise<{ api: string; db: string }> {
     return this.appService.getHealth();
   }
 }
